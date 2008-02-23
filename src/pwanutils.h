@@ -31,11 +31,28 @@ namespace pwan
         private:
             std::map<std::string, std::string> internalData;
     };
+
+    class pck
+    {
+        public:
+            pck                                     (std::string fileName = "");
+            int                                     load(std::string fileName = "");
+
+        private:
+            std::ifstream                           pckInputFile;
+            std::vector< std::vector<char> >        tempImages;
+            void                                    decompressRle(void);
+    };
     
     namespace html
     {
         stringvector    getImageLinks(std::string filename);
         stringvector    getLinks(std::string filename);
+    }
+
+    namespace ascii
+    {
+        std::vector<char>                           dupechar(const char character, unsigned int times);
     }
 
     enum fileWriteMode {OverWrite, Append};
