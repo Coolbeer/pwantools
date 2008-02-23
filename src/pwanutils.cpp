@@ -16,7 +16,7 @@ std::string pwan::inttostring(long long int number, int padding, int base)
         returnvalue = numbers.at(remainder) + returnvalue;
         number = number / base;
         if(!number)
-        break;
+            break;
     }
     returnvaluelength = returnvalue.size();
     for (int i = 0; i < (int)((padding - (int)returnvaluelength)); ++i)
