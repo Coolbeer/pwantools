@@ -23,7 +23,7 @@ void testoptions(void)
     pwan::options options;
     for (int i = 99; i != 110; ++i)
     {
-        options.set("test" + pwan::strings::inttostring(i, 4), "funker dette?" + pwan::strings::inttostring(i, 8));
+        options.set("test" + pwan::strings::fromInt(i, 4), "funker dette?" + pwan::strings::fromInt(i, 8));
     }
     dumplist(options.dump());
 }
@@ -31,9 +31,9 @@ void testoptions(void)
 int main(int argc, char *argv[])
 {
     testoptions();
-    dumpvector(pwan::strings::explodestring("lisa gikk til skolen"));
+    dumpvector(pwan::strings::explode("lisa gikk til skolen"));
     std::cout << pwan::getextention("firefox.exe") << "\n";
-    std::cout << pwan::strings::stringtolower("HER Var DeT mYe bALL du JA!") << "\n";
+    std::cout << pwan::strings::toLower("HER Var DeT mYe bALL du JA!") << "\n";
     std::cout << pwan::strings::base64Encode("Butikken var aapen i gaar") << "\n";
     dumpvector(pwan::parsebrackets("for loopen går fra[001-10]"));
     return 0;

@@ -2,7 +2,7 @@
 
 std::string pwan::getextention(std::string filename)
 {
-    std::vector<std::string> exfilename = pwan::strings::explodestring(filename, ".");
+    std::vector<std::string> exfilename = pwan::strings::explode(filename, ".");
     if(exfilename.size() > 1)
         return *(exfilename.end() -1);
     else
@@ -75,7 +75,7 @@ stringvector pwan::parsebrackets(const std::string url)
 
                 for (int teller = startnumber; teller != endnumber +1; ++teller)
                 {
-                    parsedNumber = pwan::strings::inttostring(teller, noDigits);
+                    parsedNumber = pwan::strings::fromInt(teller, noDigits);
                     newUrl = url.substr(0, startbracket) + parsedNumber + url.substr(endbracket +1, url.size());
                     parsebrackets(newUrl);
                 }
@@ -125,7 +125,7 @@ stringvector pwan::html::getImageLinks(std::string filename)
         data = pwan::readFile(filename);
         if(data.empty())
             return returnvalue;
-        dataLower = pwan::strings::stringtolower(data);
+        dataLower = pwan::strings::toLower(data);
         while(1)
         {
             index = dataLower.find("<img ", index);
@@ -162,7 +162,7 @@ stringvector pwan::html::getLinks(std::string filename)
         data = pwan::readFile(filename);
         if(data.empty())
             return returnvalue;
-        dataLower = pwan::strings::stringtolower(data);
+        dataLower = pwan::strings::toLower(data);
         while(1)
         {
             index = dataLower.find("<a href=", index);

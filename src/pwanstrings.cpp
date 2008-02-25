@@ -1,6 +1,6 @@
 #include "pwanstrings.h"
 
-std::string pwan::strings::inttostring(long long int number, int padding, int base)
+std::string pwan::strings::fromInt(long long int number, int padding, int base)
 {
     std::string::size_type returnvaluelength;
     if(base < 2 && base > 36)
@@ -24,7 +24,7 @@ std::string pwan::strings::inttostring(long long int number, int padding, int ba
     return returnvalue;
 }
 
-std::vector<std::string> pwan::strings::explodestring(std::string inputstring, std::string explodeby)
+std::vector<std::string> pwan::strings::explode(std::string inputstring, std::string explodeby)
 {
     std::vector<std::string> returnvalue;
     std::string::size_type start = 0;
@@ -44,7 +44,7 @@ std::vector<std::string> pwan::strings::explodestring(std::string inputstring, s
     return returnvalue;
 }
 
-std::string pwan::strings::stringtolower(std::string inputstring)
+std::string pwan::strings::toLower(std::string inputstring)
 {
     for(unsigned int i=0; i!=inputstring.size(); ++i)
     {
