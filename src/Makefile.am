@@ -7,6 +7,8 @@ pwantools_SOURCES = \
 	pwanoptions.cpp \
 	pwanoptions.h \
 	pwanpck.cpp \
-	pwanpck.h
+	pwanpck.h \
+	pwanstrings.cpp \
+	pwanstrings.h
 
 CLEANFILES = *moc *~
