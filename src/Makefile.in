@@ -43,7 +43,8 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_pwantools_OBJECTS = main.$(OBJEXT) pwanutils.$(OBJEXT)
+am_pwantools_OBJECTS = main.$(OBJEXT) pwanutils.$(OBJEXT) \
+	pwanoptions.$(OBJEXT)
 pwantools_OBJECTS = $(am_pwantools_OBJECTS)
 pwantools_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)@am__isrc@
@@ -152,7 +153,9 @@ pwantools_SOURCES = \
 	main.cpp \
 	main.h \
 	pwanutils.cpp \
-	pwanutils.h
+	pwanutils.h \
+	pwanoptions.cpp \
+	pwanoptions.h
 
 CLEANFILES = *moc *~
 all: all-am
@@ -222,6 +225,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pwanoptions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pwanutils.Po@am__quote@
 
 .cpp.o:

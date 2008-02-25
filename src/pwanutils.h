@@ -9,6 +9,8 @@
 #include <fstream>
 #include <sys/stat.h>
 
+#include "pwanoptions.h"
+
 typedef std::vector<std::string> stringvector;
 
 namespace pwan
@@ -18,18 +20,6 @@ namespace pwan
         public:
             int x;
             int y;
-    };
-    
-    class options
-    {
-        public:
-            options(void);
-            int set(std::string name, std::string value);
-            std::string get(std::string name);
-            std::list<std::string> dump(void);
-
-        private:
-            std::map<std::string, std::string> internalData;
     };
 
     class pck
@@ -43,7 +33,7 @@ namespace pwan
             std::vector< std::vector<char> >        tempImages;
             void                                    decompressRle(void);
     };
-    
+
     namespace html
     {
         stringvector    getImageLinks(std::string filename);
@@ -63,7 +53,7 @@ namespace pwan
     std::string         stringtolower(std::string inputstring);
     float               calculatezoom(int imagedims[2], int displaydims[2]);
     doubleint           calculateoffset(int imagedims[2], int displaydims[2]);
-    
+
     std::string         readFile(const std::string filename);
     std::string         base64Encode(const std::string text);
     stringvector        parsebrackets(const std::string url);

@@ -3,6 +3,8 @@ pwantools_SOURCES = \
 	main.cpp \
 	main.h \
 	pwanutils.cpp \
-	pwanutils.h
+	pwanutils.h \
+	pwanoptions.cpp \
+	pwanoptions.h
 
 CLEANFILES = *moc *~

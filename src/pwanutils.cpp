@@ -71,7 +71,7 @@ float pwan::calculatezoom(int imagedims[2], int displaydims[2])
         returnvalue = tempzoom1;
     else
         returnvalue = tempzoom2;
-    
+
     return returnvalue;
 }
 
@@ -80,41 +80,11 @@ pwan::doubleint pwan::calculateoffset(int imagedims[2], int displaydims[2])
     pwan::doubleint returnvalue;
     returnvalue.x = ((displaydims[0]/2) - (imagedims[0]/2));
     returnvalue.y = ((displaydims[1]/2) - (imagedims[1]/2));
-    
+
     if(returnvalue.x < 0)
         returnvalue.x = 0;
     if(returnvalue.y < 0)
         returnvalue.y = 0;
-    return returnvalue;
-}
-
-pwan::options::options(void)
-{
-
-}
-
-int pwan::options::set(std::string name, std::string value)
-{
-    internalData[name] = value;
-    return 0;
-}
-
-std::string pwan::options::get(std::string name)
-{
-    if(internalData.find(name) != internalData.end())
-        return (*(internalData.find(name))).second;
-    else
-        return "";
-}
-
-std::list<std::string> pwan::options::dump(void)
-{
-    std::list<std::string> returnvalue;
-    for(std::map<std::string, std::string>::iterator iter = internalData.begin(); iter != internalData.end(); ++iter)
-    {
-        returnvalue.push_back((*iter).first);
-        returnvalue.push_back((*iter).second);
-    }
     return returnvalue;
 }
 
@@ -233,7 +203,7 @@ int pwan::writefile(const std::string filename, const char data[], const int dat
         return(1);
     }
     outputfile.write(data, datasize);
-    outputfile.close(); 
+    outputfile.close();
     return(0);
 }
 
