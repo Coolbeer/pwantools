@@ -11,7 +11,7 @@ namespace pwan
     class pck
     {
         public:
-            pck                                     (std::string fileName = "");
+                                                    pck(std::string fileName = "");
             int                                     load(std::string fileName = "");
 
         private:
