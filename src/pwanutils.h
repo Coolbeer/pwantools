@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 
 #include "pwanoptions.h"
+#include "pwanpck.h"
 
 typedef std::vector<std::string> stringvector;
 
@@ -20,18 +21,6 @@ namespace pwan
         public:
             int x;
             int y;
-    };
-
-    class pck
-    {
-        public:
-            pck                                     (std::string fileName = "");
-            int                                     load(std::string fileName = "");
-
-        private:
-            std::ifstream                           pckInputFile;
-            std::vector< std::vector<char> >        tempImages;
-            void                                    decompressRle(void);
     };
 
     namespace html
