@@ -1,4 +1,7 @@
 #include "pwanutils.h"
+#include "pwandebug.h"
+
+pwan::debug debugz;
 
 void dumplist(std::list<std::string> dumpvalue)
 {
