@@ -2,7 +2,7 @@
 #include "pwandebug.h"
 #include "pwancmdlineparser.h"
 
-pwan::debug debugz;
+pwan::debug debug;
 
 void dumplist(std::list<std::string> dumpvalue)
 {
