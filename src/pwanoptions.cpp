@@ -44,3 +44,13 @@ std::list<std::string> pwan::options::dump(void)
     }
     return returnvalue;
 }
+
+void pwan::options::setFlag(const char shortOpt, const std::string& longOpt, const std::string& description)
+{
+    optionBlob newOption;
+    newOption.shortOpt = shortOpt;
+    newOption.longOpt = longOpt;
+    newOption.description = description;
+    allowedOptions.push_back(newOption);
+
+}
