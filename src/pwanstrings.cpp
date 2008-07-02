@@ -65,7 +65,7 @@ std::string pwan::strings::toLower(std::string inputstring)
 
 std::string pwan::strings::base64Encode(const std::string &text)
 {
-    std::string base64list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    const std::string base64list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     std::string buffer;
     char *temptext64;
     temptext64 = new char[text.size() * 2 + 5];
