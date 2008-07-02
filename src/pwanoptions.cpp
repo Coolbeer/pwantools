@@ -8,7 +8,7 @@ pwan::options::options(void)
     className = "pwan::options";
 }
 
-int pwan::options::set(std::string name, std::string value)
+int pwan::options::set(const std::string& name, const std::string& value)
 {
     std::string functionName = "set";
     ::debug.print(className + "::" + functionName, name + " = " + value, 3);

@@ -11,7 +11,7 @@ namespace pwan
     {
         public:
                                                     options(void);
-            int                                     set(std::string name, std::string value);
+            int                                     set(const std::string& name, const std::string& value);
             std::string                             get(std::string name);
             std::list<std::string>                  dump(void);
 
