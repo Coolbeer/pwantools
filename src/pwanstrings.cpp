@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include "pwanstrings.h"
 
 std::string pwan::strings::fromInt(long long int number, int padding, int base)
@@ -9,10 +10,9 @@ std::string pwan::strings::fromInt(long long int number, int padding, int base)
         number = -number;
         negative = true;
     }
-    if(base < 2 && base > 36)
+    if(base < 2 || base > 36)
     {
-        std::cout << "pwan::inttostring: base not in range\n\n";
-        exit(1);
+        throw std::out_of_range("Base not in range");
     }
     std::string numbers = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     std::string returnvalue = "";
