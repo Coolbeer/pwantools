@@ -32,7 +32,7 @@ namespace pwan
 
     enum fileWriteMode {OverWrite, Append};
 
-    std::string         getextention(std::string filename);
+    std::string         getextention(const std::string& filename);
     float               calculatezoom(int imagedims[2], int displaydims[2]);
     doubleint           calculateoffset(int imagedims[2], int displaydims[2]);
 

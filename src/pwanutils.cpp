@@ -1,6 +1,6 @@
 #include "pwanutils.h"
 
-std::string pwan::getextention(std::string filename)
+std::string pwan::getextention(const std::string& filename)
 {
     std::vector<std::string> exfilename = pwan::strings::explode(filename, ".");
     if(exfilename.size() > 1)
