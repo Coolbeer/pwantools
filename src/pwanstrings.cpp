@@ -106,7 +106,6 @@ std::string pwan::strings::base64Encode(const std::string &text)
 
 std::vector<char> pwan::strings::dupechar(const char character, unsigned int times)
 {
-    std::cout << "times: " << times << "\n";
     std::vector<char> returnValue;
     for (unsigned int i = 0; i != times; ++i)
     {
