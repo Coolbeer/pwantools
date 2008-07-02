@@ -100,6 +100,7 @@ std::string pwan::strings::base64Encode(const std::string &text)
     }
     temptext64[(teller*4)+4] = '\0';
     std::string text64 = temptext64;
+    delete(temptext64);
     return (text64);
 }
 
