@@ -56,7 +56,7 @@ std::vector<std::string> pwan::strings::explode(const std::string& inputstring, 
 
 std::string pwan::strings::toLower(std::string inputstring)
 {
-    for(unsigned int i=0; i!=inputstring.size(); ++i)
+    for(std::strings::size_type i = 0; i != inputstring.size(); ++i)
     {
         inputstring[i] = std::tolower(inputstring[i]);
     }
