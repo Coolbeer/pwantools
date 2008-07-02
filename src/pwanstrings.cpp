@@ -21,11 +21,12 @@ std::string pwan::strings::fromInt(long long int number, unsigned int padding, u
         returnvalue = numbers.at(remainder) + returnvalue;
         number = number / base;
     } while(number);
+
     returnvaluelength = returnvalue.size();
     if(negative && padding)
         padding = padding -1;
-    for (int i = 0; i < (int)((padding - (int)returnvaluelength)); ++i)
-        returnvalue = "0" + returnvalue;
+    if(padding > returnvaluelength)
+        returnvalue = std::string(padding - returnvaluelength, '0') + returnvalue;
     if(negative)
         returnvalue = "-" + returnvalue;
     return returnvalue;
