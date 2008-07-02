@@ -1,7 +1,7 @@
 #include <stdexcept>
 #include "pwanstrings.h"
 
-std::string pwan::strings::fromInt(long long int number, int padding, int base)
+std::string pwan::strings::fromInt(long long int number, unsigned int padding, unsigned int base)
 {
     std::string::size_type returnvaluelength;
     bool negative = false;
