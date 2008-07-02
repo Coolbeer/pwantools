@@ -2,7 +2,6 @@
 #define PWANDEBUG_H
 
 #include <string>
-#include <iostream>
 #include <vector>
 
 /*

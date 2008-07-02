@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "pwandebug.h"
 #include "pwanstrings.h"
 

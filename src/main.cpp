@@ -1,3 +1,4 @@
+#include <iostream>
 #include "pwanutils.h"
 #include "pwandebug.h"
 #include "pwanoptions.h"
