@@ -15,14 +15,12 @@ std::string pwan::strings::fromInt(long long int number, unsigned int padding, u
     }
     if(base < 2 || base > 36)
         throw std::out_of_range("Base not in range");
-    while(1)
+    do
     {
         long long int remainder = number % base;
         returnvalue = numbers.at(remainder) + returnvalue;
         number = number / base;
-        if(!number)
-            break;
-    }
+    } while(number);
     returnvaluelength = returnvalue.size();
     if(negative && padding)
         padding = padding -1;
