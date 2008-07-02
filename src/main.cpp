@@ -1,6 +1,5 @@
 #include "pwanutils.h"
 #include "pwandebug.h"
-#include "pwancmdlineparser.h"
 
 pwan::debug debug;
 
@@ -34,7 +33,6 @@ void testoptions(void)
 
 int main(int argc, char *argv[])
 {
-    pwan::cmdLineParser cmdLineParser(argc, argv);
     testoptions();
     dumpvector(pwan::strings::explode("lisa gikk til skolen"));
     std::cout << pwan::getextention("firefox.exe") << "\n";
