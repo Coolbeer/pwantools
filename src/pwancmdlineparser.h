@@ -10,7 +10,6 @@ namespace pwan
         public:
             cmdLineParser(void);
             cmdLineParser(int argc, char *argv[]);
-            bool parse(int argc, char *argv[]);
         private:
             std::string className;
     };
