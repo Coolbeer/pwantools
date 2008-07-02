@@ -4,7 +4,7 @@
 std::string pwan::strings::fromInt(long long int number, unsigned int padding, unsigned int base)
 {
     std::string::size_type returnvaluelength;
-    std::string numbers = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const std::string numbers = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     std::string returnvalue;
     bool negative = false;
 
