@@ -67,12 +67,12 @@ std::string pwan::strings::base64Encode(const std::string &text)
 {
     const std::string base64list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     std::string buffer;
+    std::string::size_type teller;
     char *temptext64;
-    temptext64 = new char[text.size() * 2 + 5];
-    int teller;
     div_t q = div(text.length(), 3);
-//    cout << q.quot << " " << q.rem << endl;
-    for (teller = 0; teller < q.quot; teller++)
+
+    temptext64 = new char[text.size() * 2 + 5];
+    for (teller = 0; teller < (unsigned int)q.quot; teller++)
     {
         buffer[0] = text[teller*3];
         buffer[1] = text[(teller*3)+1];
@@ -100,7 +100,6 @@ std::string pwan::strings::base64Encode(const std::string &text)
     }
     temptext64[(teller*4)+4] = '\0';
     std::string text64 = temptext64;
-//    cout << text64 << endl;
     return (text64);
 }
 
