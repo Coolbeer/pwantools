@@ -8,7 +8,7 @@ pwan::debug::debug(void)
     maxSavedLog = 20;
 }
 
-void pwan::debug::print(std::string from, std::string message, int debugLevel)
+void pwan::debug::print(const std::string& from, const std::string& message, int debugLevel)
 {
     std::string completeMessage;
     completeMessage = from + ": " + message;
