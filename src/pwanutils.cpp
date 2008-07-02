@@ -1,4 +1,5 @@
 #include "pwanutils.h"
+#include "pwanstrings.h"
 
 std::string pwan::getextention(const std::string& filename)
 {
@@ -51,9 +52,9 @@ std::string pwan::readFile(const std::string filename)
     return returnvalue;
 }
 
-stringvector pwan::parsebrackets(const std::string url)
+std::vector<std::string> pwan::parsebrackets(const std::string url)
 {
-    static stringvector returnvalue;
+    static std::vector<std::string> returnvalue;
     int startnumber, endnumber, noDigits;
     std::string::size_type startbracket, endbracket, separator;
     std::string parsedNumber, newUrl;
@@ -113,9 +114,9 @@ int pwan::writefile(const std::string filename, const char data[], const int dat
     return(0);
 }
 
-stringvector pwan::html::getImageLinks(std::string filename)
+std::vector<std::string> pwan::html::getImageLinks(std::string filename)
 {
-    stringvector returnvalue;
+    std::vector<std::string> returnvalue;
     std::string::size_type index, endurl;
     std::string url, data, dataLower;
 
@@ -150,9 +151,9 @@ stringvector pwan::html::getImageLinks(std::string filename)
     return returnvalue;
 }
 
-stringvector pwan::html::getLinks(std::string filename)
+std::vector<std::string> pwan::html::getLinks(std::string filename)
 {
-    stringvector returnvalue;
+    std::vector<std::string> returnvalue;
     std::string::size_type index, endurl;
     std::string url, data, dataLower;
 

@@ -1,5 +1,7 @@
 #include "pwanutils.h"
 #include "pwandebug.h"
+#include "pwanoptions.h"
+#include "pwanstrings.h"
 
 pwan::debug debug;
 
