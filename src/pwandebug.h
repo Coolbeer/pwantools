@@ -9,7 +9,8 @@
     Debuglevels:
         1  -  Normal output for user
         2  -  Normal verbose
-        3  -  Very verbose(currently used for debugging
+        3  -  Very verbose(currently used for debugging)
+        4  -  The extreme verbose debugging(lots of spam)
 */
 
 namespace pwan
