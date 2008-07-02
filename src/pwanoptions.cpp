@@ -16,7 +16,7 @@ int pwan::options::set(const std::string& name, const std::string& value)
     return 0;
 }
 
-std::string pwan::options::get(std::string name)
+std::string pwan::options::get(const std::string& name)
 {
     std::string functionName = "get";
     ::debug.print(className + "::" + functionName, "name = " + name, 3);
