@@ -26,7 +26,7 @@ namespace pwan
         public:
             debug(void);
             void print(const std::string& from, const std::string& message, int debugLevel = 1);
-            void print(std::string message);
+            void print(const std::string& message);
             void setDebugLevel(int debugLevel);
             int getDebugLevel(void);
 

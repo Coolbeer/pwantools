@@ -25,7 +25,7 @@ void pwan::debug::print(const std::string& from, const std::string& message, int
     }
 }
 
-void pwan::debug::print(std::string message)
+void pwan::debug::print(const std::string& message)
 {
     std::cout << message << "\n";
 }
