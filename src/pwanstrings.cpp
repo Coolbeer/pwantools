@@ -14,9 +14,7 @@ std::string pwan::strings::fromInt(long long int number, unsigned int padding, u
         negative = true;
     }
     if(base < 2 || base > 36)
-    {
         throw std::out_of_range("Base not in range");
-    }
     while(1)
     {
         long long int remainder = number % base;
