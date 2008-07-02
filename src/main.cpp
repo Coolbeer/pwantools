@@ -26,7 +26,7 @@ void dumpvector(std::vector<std::string> dumpvalue)
 void testoptions(void)
 {
     pwan::options options;
-    for (int i = 99; i != 110; ++i)
+    for (int i = 105; i != 110; ++i)
     {
         options.set("test" + pwan::strings::fromInt(i, 4), "funker dette?" + pwan::strings::fromInt(i, 8));
     }
@@ -40,6 +40,6 @@ int main(int argc, char *argv[])
     std::cout << pwan::getextention("firefox.exe") << "\n";
     std::cout << pwan::strings::toLower("HER Var DeT mYe bALL du JA!") << "\n";
     std::cout << pwan::strings::base64Encode("Butikken var aapen i gaar") << "\n";
-    dumpvector(pwan::parsebrackets("for loopen går fra[001-10]"));
+    dumpvector(pwan::parsebrackets("for loopen går fra[001-3]"));
     return 0;
 }

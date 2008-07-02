@@ -3,11 +3,6 @@
 
 #include <vector>
 #include <string>
-#include <list>
-#include <map>
-#include <iostream>
-#include <fstream>
-#include <sys/stat.h>
 
 namespace pwan
 {
