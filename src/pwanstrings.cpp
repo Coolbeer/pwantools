@@ -63,7 +63,7 @@ std::string pwan::strings::toLower(std::string inputstring)
     return inputstring;
 }
 
-std::string pwan::strings::base64Encode(const std::string text)
+std::string pwan::strings::base64Encode(const std::string &text)
 {
     std::string base64list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     std::string buffer;
