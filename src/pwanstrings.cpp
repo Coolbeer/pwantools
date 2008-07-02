@@ -32,7 +32,7 @@ std::string pwan::strings::fromInt(long long int number, unsigned int padding, u
     return returnvalue;
 }
 
-std::vector<std::string> pwan::strings::explode(std::string inputstring, std::string explodeby)
+std::vector<std::string> pwan::strings::explode(const std::string& inputstring, std::string explodeby)
 {
     std::vector<std::string> returnvalue;
     std::string::size_type start = 0;
