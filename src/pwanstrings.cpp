@@ -37,19 +37,21 @@ std::vector<std::string> pwan::strings::explode(const std::string& inputstring, 
     std::vector<std::string> returnvalue;
     std::string::size_type start = 0;
     std::string::size_type end;
-
-    while(start != inputstring.size() && isspace(inputstring[start]))
-        ++start;
-    for(; start != std::string::npos; start++)
+    if(inputstring.size() != 0)
     {
-        end = inputstring.find_first_of(explodeby, start);
-        if(end == std::string::npos)
+        while(start != inputstring.size() && isspace(inputstring[start]))
+            ++start;
+        for(; start != std::string::npos; start++)
         {
-            returnvalue.push_back(inputstring.substr(start));
-            return returnvalue;
+            end = inputstring.find_first_of(explodeby, start);
+            if(end == std::string::npos)
+            {
+                returnvalue.push_back(inputstring.substr(start));
+                return returnvalue;
+            }
+            returnvalue.push_back(inputstring.substr(start, end-start));
+            start = end;
         }
-        returnvalue.push_back(inputstring.substr(start, end-start));
-        start = end;
     }
     return returnvalue;
 }
