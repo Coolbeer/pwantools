@@ -77,7 +77,8 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
     std::vector<std::string> returnValue, parsedOpt, valParms, lastValParms;
     vecStrIter vsIter, valParmsIter;
     std::string lastOpt;
-    int i = 0;
+    int i, added;
+    i = added = 0;
     for(vsIter = args.begin(); vsIter != args.end(); ++vsIter)
     {
         if(!lastOpt.empty())
@@ -101,21 +102,30 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
         parsedOpt = pwan::strings::explode(vsIter->substr(i), ":");
         for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
         {
+            added = 0;
             if((opBlobIter->shortOpt == parsedOpt.at(0) && parsedOpt.at(0).size() == 1) || (opBlobIter->longOpt == parsedOpt.at(0)))
             {
                 valParms = pwan::strings::explode(opBlobIter->validParams, ":");
                 if(opBlobIter->validParams.empty() && parsedOpt.size() == 2)
+                {
                     set(opBlobIter->longOpt, parsedOpt.at(1));
+                    added = 1;
+                }
                 else if(opBlobIter->validParams == "!")
+                {
+                    added = 1;
                     set(opBlobIter->longOpt, "true");
+                    break;
+                }
                 else if(!opBlobIter->validParams.empty() && parsedOpt.size() == 2)
                 {
                     if(valParms.size() == 1)
                     {
                         if(valParms.at(0) == parsedOpt.at(1))
                         {
+                            added = 1;
                             set(opBlobIter->longOpt, parsedOpt.at(1));
-                            continue;
+                            break;
                         }
                     }
                     else
@@ -124,6 +134,7 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
                         {
                             if((*valParmsIter) == parsedOpt.at(1))
                             {
+                                added = 1;
                                 set(opBlobIter->longOpt, parsedOpt.at(1));
                                 break;
                             }
@@ -132,10 +143,21 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
                 }
                 else
                 {
+                    added = 1;
                     lastOpt = opBlobIter->longOpt;
                     lastValParms = valParms;
+                    break;
                 }
             }
+        }
+        if(added == 0)
+        {
+            lastOpt = get("noname");
+            if(!lastOpt.empty())
+                lastOpt += " ";
+            set("noname", lastOpt + (*vsIter));
+            lastOpt.clear();
+            continue;
         }
     }
     return returnValue;
