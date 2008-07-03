@@ -76,9 +76,20 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
     std::vector<optionBlob>::iterator opBlobIter;
     std::vector<std::string> returnValue, parsedOpt, valParms, lastValParms;
     vecStrIter vsIter, valParmsIter;
-    std::string lastOpt;
+    std::string lastOpt, defaultOpt;
     int i, added;
     i = added = 0;
+
+    for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
+    {
+        if(opBlobIter->validParams == "*")
+        {
+            defaultOpt = opBlobIter->longOpt;
+            break;
+        }
+    }
+    if(defaultOpt.empty())
+        defaultOpt = "noname";
     for(vsIter = args.begin(); vsIter != args.end(); ++vsIter)
     {
         if(!lastOpt.empty())
@@ -152,12 +163,11 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
         }
         if(added == 0)
         {
-            lastOpt = get("noname");
+            lastOpt = get(defaultOpt);
             if(!lastOpt.empty())
                 lastOpt += " ";
-            set("noname", lastOpt + (*vsIter));
+            set(defaultOpt, lastOpt + (*vsIter));
             lastOpt.clear();
-            continue;
         }
     }
     return returnValue;

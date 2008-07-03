@@ -26,7 +26,7 @@ namespace pwan
             void                                    setOption(const std::string& shortOpt,                      //Optional
                                                               const std::string& longOpt,                       //Mandatory
                                                               const std::string& description,                   //Optional
-                                                              const std::string& validParams);                  //Optional(empty = any parameter, ! = no parameter)
+                                                              const std::string& validParams);                  //Optional(empty = any parameter, ! = no parameter, * = default parameter)
             std::vector<std::string>                checkCmdLine(int argc, char** argv);
             std::vector<std::string>                checkCmdLine(const std::vector<std::string>& args);
         private:

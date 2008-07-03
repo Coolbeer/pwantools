@@ -30,6 +30,7 @@ void testoptions(int argc, char **argv)
     options.setOption("V", "version", "Prints versionstring", "!");
     options.setOption("b", "browserid", "Set browserid", "");
     options.setOption("", "secure-protocol", "choose secure protocol, one of auto, SSLv2, SSLv3, and TLSv1", "auto:SSLv2:SSLv3:TLSv1");
+    options.setOption("", "url", "", "*");
     options.checkCmdLine(argc, argv);
     for (int i = 105; i != 110; ++i)
     {
