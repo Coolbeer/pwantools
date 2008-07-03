@@ -10,9 +10,10 @@ namespace pwan
 {
     struct optionBlob
     {
-        char                                        shortOpt;
+        std::string                                 shortOpt;
         std::string                                 longOpt;
         std::string                                 description;
+        std::string                                 validParams;
     };
 
     class options
@@ -22,8 +23,12 @@ namespace pwan
             int                                     set(const std::string& name, const std::string& value);
             std::string                             get(const std::string& name);
             std::list<std::string>                  dump(void);
-
-            void                                    setFlag(const char shortOpt, const std::string& longOpt, const std::string& description);
+            void                                    setOption(const std::string& shortOpt,                      //Optional
+                                                              const std::string& longOpt,                       //Mandatory
+                                                              const std::string& description,                   //Optional
+                                                              const std::string& validParams);                  //Optional(empty = any parameter, ! = no parameter)
+            std::vector<std::string>                checkCmdLine(int argc, char** argv);
+            std::vector<std::string>                checkCmdLine(const std::vector<std::string>& args);
         private:
             std::map<std::string, std::string>      internalData;
             std::string className;

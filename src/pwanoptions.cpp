@@ -1,5 +1,7 @@
+#include <stdexcept>
 #include "pwanoptions.h"
 #include "pwandebug.h"
+#include "pwanstrings.h"
 
 extern pwan::debug debug;
 
@@ -45,12 +47,96 @@ std::list<std::string> pwan::options::dump(void)
     return returnvalue;
 }
 
-void pwan::options::setFlag(const char shortOpt, const std::string& longOpt, const std::string& description)
+void pwan::options::setOption(const std::string& shortOpt, const std::string& longOpt, const std::string& description, const std::string& validParams)
 {
     optionBlob newOption;
     newOption.shortOpt = shortOpt;
+    if(longOpt.empty())
+        throw std::invalid_argument("no long option specified");
     newOption.longOpt = longOpt;
     newOption.description = description;
+    newOption.validParams = validParams;
     allowedOptions.push_back(newOption);
+}
 
+std::vector<std::string> pwan::options::checkCmdLine(int argc, char** argv)
+{
+    std::vector<std::string> toCheck;
+    for(int i = 1; i != argc; ++i)
+    {
+        std::string tmpS = argv[i];
+        toCheck.push_back(tmpS);
+    }
+    return checkCmdLine(toCheck);
+}
+
+std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::string>& args)
+{
+    typedef std::vector<std::string>::const_iterator vecStrIter;
+    std::vector<optionBlob>::iterator opBlobIter;
+    std::vector<std::string> returnValue, parsedOpt, valParms, lastValParms;
+    vecStrIter vsIter, valParmsIter;
+    std::string lastOpt;
+    int i = 0;
+    for(vsIter = args.begin(); vsIter != args.end(); ++vsIter)
+    {
+        if(!lastOpt.empty())
+        {
+            if(lastValParms.empty())
+                set(lastOpt, (*vsIter));
+            else
+            {
+                for(valParmsIter = lastValParms.begin(); valParmsIter != lastValParms.end(); ++valParmsIter)
+                {
+                    if((*valParmsIter) == (*vsIter))
+                        set(lastOpt, (*vsIter));
+                }
+            }
+            lastOpt.clear();
+            lastValParms.clear();
+            continue;
+        }
+        while(vsIter->at(i) == '-' || vsIter->at(i) == '/')
+            ++i;
+        parsedOpt = pwan::strings::explode(vsIter->substr(i), ":");
+        for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
+        {
+            if((opBlobIter->shortOpt == parsedOpt.at(0) && parsedOpt.at(0).size() == 1) || (opBlobIter->longOpt == parsedOpt.at(0)))
+            {
+                valParms = pwan::strings::explode(opBlobIter->validParams, ":");
+                if(opBlobIter->validParams.empty() && parsedOpt.size() == 2)
+                    set(opBlobIter->longOpt, parsedOpt.at(1));
+                else if(opBlobIter->validParams == "!")
+                    set(opBlobIter->longOpt, "true");
+                else if(!opBlobIter->validParams.empty() && parsedOpt.size() == 2)
+                {
+                    if(valParms.size() == 1)
+                    {
+                        if(valParms.at(0) == parsedOpt.at(1))
+                        {
+                            set(opBlobIter->longOpt, parsedOpt.at(1));
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        for(valParmsIter = valParms.begin(); valParmsIter != valParms.end(); ++valParmsIter)
+                        {
+                            if((*valParmsIter) == parsedOpt.at(1))
+                            {
+                                set(opBlobIter->longOpt, parsedOpt.at(1));
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    lastOpt = opBlobIter->longOpt;
+                    lastValParms = valParms;
+                }
+            }
+        }
+    }
+    return returnValue;
 }
