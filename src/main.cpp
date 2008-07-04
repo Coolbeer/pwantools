@@ -32,6 +32,7 @@ void testoptions(int argc, char **argv)
     options.setOption("", "secure-protocol", "choose secure protocol, one of auto, SSLv2, SSLv3, and TLSv1", "auto:SSLv2:SSLv3:TLSv1");
     options.setOption("", "url", "", "*");
     options.checkCmdLine(argc, argv);
+    std::cout << options.makeHelp();
     for (int i = 105; i != 110; ++i)
     {
         options.set("test" + pwan::strings::fromInt(i, 4), "funker dette?" + pwan::strings::fromInt(i, 8));
