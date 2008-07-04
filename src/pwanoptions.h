@@ -33,6 +33,8 @@ namespace pwan
             std::map<std::string, std::string>      internalData;
             std::string className;
             std::vector<optionBlob>                 allowedOptions;
+            std::string                             defaultOpt;
+            std::string                             programName;
     };
 }
 

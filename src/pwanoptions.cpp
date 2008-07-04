@@ -62,7 +62,7 @@ void pwan::options::setOption(const std::string& shortOpt, const std::string& lo
 std::vector<std::string> pwan::options::checkCmdLine(int argc, char** argv)
 {
     std::vector<std::string> toCheck;
-    for(int i = 1; i != argc; ++i)
+    for(int i = 0; i != argc; ++i)
     {
         std::string tmpS = argv[i];
         toCheck.push_back(tmpS);
@@ -76,10 +76,12 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
     std::vector<optionBlob>::iterator opBlobIter;
     std::vector<std::string> returnValue, parsedOpt, valParms, lastValParms;
     vecStrIter vsIter, valParmsIter;
-    std::string lastOpt, defaultOpt;
+    std::string lastOpt;
     int i, added;
     i = added = 0;
 
+    if(!args.empty())
+        programName = args.at(0);
     for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
     {
         if(opBlobIter->validParams == "*")
@@ -88,9 +90,7 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
             break;
         }
     }
-    if(defaultOpt.empty())
-        defaultOpt = "noname";
-    for(vsIter = args.begin(); vsIter != args.end(); ++vsIter)
+    for(vsIter = args.begin() +1; vsIter != args.end(); ++vsIter)
     {
         if(!lastOpt.empty())
         {
@@ -114,7 +114,7 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
         for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
         {
             added = 0;
-            if((opBlobIter->shortOpt == parsedOpt.at(0) && parsedOpt.at(0).size() == 1) || (opBlobIter->longOpt == parsedOpt.at(0)))
+            if((opBlobIter->shortOpt == parsedOpt.at(0)) || (opBlobIter->longOpt == parsedOpt.at(0)))
             {
                 valParms = pwan::strings::explode(opBlobIter->validParams, ":");
                 if(opBlobIter->validParams.empty() && parsedOpt.size() == 2)
@@ -163,11 +163,18 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
         }
         if(added == 0)
         {
-            lastOpt = get(defaultOpt);
-            if(!lastOpt.empty())
-                lastOpt += " ";
-            set(defaultOpt, lastOpt + (*vsIter));
-            lastOpt.clear();
+            if(!defaultOpt.empty() && !((*vsIter).at(0) == '-' || (*vsIter).at(0) == '/'))
+            {
+                lastOpt = get(defaultOpt);
+                if(!lastOpt.empty())
+                    lastOpt += " ";
+                set(defaultOpt, lastOpt + (*vsIter));
+                lastOpt.clear();
+            }
+            else
+            {
+                returnValue.push_back(*vsIter);
+            }
         }
     }
     return returnValue;
