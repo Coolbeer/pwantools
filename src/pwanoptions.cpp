@@ -59,6 +59,54 @@ void pwan::options::setOption(const std::string& shortOpt, const std::string& lo
     allowedOptions.push_back(newOption);
 }
 
+std::string pwan::options::makeHelp(void)
+{
+    std::string returnValue;
+    std::vector<optionBlob>::iterator opBlobIter;
+    bool hasOpt = false;
+    unsigned int longestShort = 0;
+    unsigned int longestLong = 0;
+
+    returnValue = "Usage: ";
+    if(!programName.empty())
+        returnValue += programName;
+    else
+        returnValue += "programName";
+    if((defaultOpt != "" && allowedOptions.size() > 1) || (defaultOpt == "" && allowedOptions.size() > 0))
+    {
+        returnValue += " [OPTIONS]";
+        hasOpt = true;
+    }
+    if(defaultOpt != "")
+    {
+        returnValue += " [" + defaultOpt + "]";
+    }
+    if(hasOpt)
+    {
+        returnValue += "\n\nWhere [OPTIONS] is one of the following:\n";
+        for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
+        {
+            if(opBlobIter->shortOpt.size() > longestShort)
+                longestShort = opBlobIter->shortOpt.size();
+            if(opBlobIter->longOpt.size() > longestLong)
+                longestLong = opBlobIter->longOpt.size();
+        }
+        for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
+        {
+            if(opBlobIter->longOpt == defaultOpt)
+                continue;
+            if(opBlobIter->shortOpt != "")
+                returnValue += "  -" + opBlobIter->shortOpt + "," + std::string(longestShort - opBlobIter->shortOpt.size() + 2, ' ');
+            else
+                returnValue += std::string(longestShort + 6, ' ');
+                returnValue += "--" + opBlobIter->longOpt + std::string(longestLong - opBlobIter->longOpt.size() + 5, ' ');
+                returnValue += opBlobIter->description + "\n";
+        }
+    }
+    returnValue += "\n";
+    return returnValue;
+}
+
 std::vector<std::string> pwan::options::checkCmdLine(int argc, char** argv)
 {
     std::vector<std::string> toCheck;

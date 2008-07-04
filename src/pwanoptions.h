@@ -29,6 +29,7 @@ namespace pwan
                                                               const std::string& validParams);                  //Optional(empty = any parameter, ! = no parameter, * = default parameter)
             std::vector<std::string>                checkCmdLine(int argc, char** argv);
             std::vector<std::string>                checkCmdLine(const std::vector<std::string>& args);
+            std::string                             makeHelp(void);
         private:
             std::map<std::string, std::string>      internalData;
             std::string className;
