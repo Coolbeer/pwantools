@@ -45,7 +45,7 @@ binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_pwantools_OBJECTS = main.$(OBJEXT) pwanutils.$(OBJEXT) \
 	pwanoptions.$(OBJEXT) pwanpck.$(OBJEXT) pwanstrings.$(OBJEXT) \
-	pwandebug.$(OBJEXT) pwanfileio.$(OBJEXT)
+	pwandebug.$(OBJEXT)
 pwantools_OBJECTS = $(am_pwantools_OBJECTS)
 pwantools_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
@@ -162,9 +162,7 @@ pwantools_SOURCES = \
 	pwanstrings.cpp \
 	pwanstrings.h \
 	pwandebug.cpp \
-	pwandebug.h \
-	pwanfileio.cpp \
-	pwanfileio.h
+	pwandebug.h
 
 CLEANFILES = *moc *~
 all: all-am
@@ -235,7 +233,6 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pwandebug.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pwanfileio.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pwanoptions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pwanpck.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pwanstrings.Po@am__quote@
