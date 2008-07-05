@@ -49,7 +49,9 @@ std::list<std::string> pwan::options::dump(void)
 
 void pwan::options::setOption(const std::string& shortOpt, const std::string& longOpt, const std::string& description, const std::string& validParams)
 {
+    const std::string functionName("setOption");
     optionBlob newOption;
+    ::debug.print(className + "::" + functionName, "shortOpt = \"" + shortOpt + "\", longOpt = \"" + longOpt + "\"", 3);
     newOption.shortOpt = shortOpt;
     if(longOpt.empty())
         throw std::invalid_argument("no long option specified");
@@ -61,6 +63,7 @@ void pwan::options::setOption(const std::string& shortOpt, const std::string& lo
 
 std::string pwan::options::makeHelp(void)
 {
+    const std::string functionName("makeHelp");
     std::string returnValue;
     std::vector<optionBlob>::iterator opBlobIter;
     bool hasOpt = false;
@@ -104,6 +107,7 @@ std::string pwan::options::makeHelp(void)
         }
     }
     returnValue += "\n";
+    ::debug.print(className + "::" + functionName, "Returning a string of " + pwan::strings::fromInt(returnValue.size()) + " bytes", 3);
     return returnValue;
 }
 
@@ -120,6 +124,7 @@ std::vector<std::string> pwan::options::checkCmdLine(int argc, char** argv)
 
 std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::string>& args)
 {
+    const std::string functionName("checkCmdLine");
     typedef std::vector<std::string>::const_iterator vecStrIter;
     std::vector<optionBlob>::iterator opBlobIter;
     std::vector<std::string> returnValue, parsedOpt, valParms, lastValParms;
@@ -128,6 +133,7 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
     int i, added;
     i = added = 0;
 
+    ::debug.print(className + "::" + functionName, "Checking a vector of " + pwan::strings::fromInt(args.size()) + " elements", 3);
     if(!args.empty())
         programName = args.at(0);
     for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
@@ -225,5 +231,6 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
             }
         }
     }
+    ::debug.print(className + "::" + functionName, "Returning " + pwan::strings::fromInt(returnValue.size()) + " discarded elements", 3);
     return returnValue;
 }
