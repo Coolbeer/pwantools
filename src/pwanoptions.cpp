@@ -111,6 +111,15 @@ std::string pwan::options::makeHelp(void)
     return returnValue;
 }
 
+std::vector<std::string> pwan::options::checkIniFile(const std::string& filename)
+{
+    const std::string functionName("checkIniFile");
+    std::vector<std::string> returnValue;
+
+    ::debug.print(className + "::" + functionName, "Filename = \"" + filename + "\"", 3);
+    return returnValue;
+}
+
 std::vector<std::string> pwan::options::checkCmdLine(int argc, char** argv)
 {
     std::vector<std::string> toCheck;

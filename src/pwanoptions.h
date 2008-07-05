@@ -27,6 +27,7 @@ namespace pwan
                                                               const std::string& longOpt,                       //Mandatory
                                                               const std::string& description,                   //Optional
                                                               const std::string& validParams);                  //Optional(empty = any parameter, ! = no parameter, * = default parameter)
+            std::vector<std::string>                checkIniFile(const std::string& filename);
             std::vector<std::string>                checkCmdLine(int argc, char** argv);
             std::vector<std::string>                checkCmdLine(const std::vector<std::string>& args);
             std::string                             makeHelp(void);
