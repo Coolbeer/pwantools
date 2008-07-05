@@ -130,11 +130,9 @@ std::vector<std::string> pwan::options::checkIniFile(const std::string& filename
     }
     while(std::getline(inputFile, strToCheck))
     {
-        ::debug.print(strToCheck);
         if(strToCheck.empty() || strToCheck[0] == '#')
             continue;
         expLine = pwan::strings::explode(strToCheck, "=");
-        ::debug.print(pwan::strings::fromInt(expLine.size()));
         if(expLine.size() == 2)
         {
             for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
