@@ -32,6 +32,7 @@ void testoptions(int argc, char **argv)
     options.setOption("", "secure-protocol", "choose secure protocol, one of auto, SSLv2, SSLv3, and TLSv1", "auto:SSLv2:SSLv3:TLSv1");
     options.setOption("", "url", "", "*");
     options.setOption("d", "debug", "Enable verbose debug info", "!");
+    options.checkIniFile("setup.ini");
     options.checkCmdLine(argc, argv);
     std::cout << options.makeHelp();
     if(options.get("debug") == "true")

@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <fstream>
 #include "pwanoptions.h"
 #include "pwandebug.h"
 #include "pwanstrings.h"
@@ -115,8 +116,60 @@ std::vector<std::string> pwan::options::checkIniFile(const std::string& filename
 {
     const std::string functionName("checkIniFile");
     std::vector<std::string> returnValue;
+    std::vector<std::string> expLine, expValOpts;
+    std::string strToCheck;
+    std::vector<optionBlob>::iterator opBlobIter;
+    std::vector<std::string>::iterator expValOptsIter;
 
     ::debug.print(className + "::" + functionName, "Filename = \"" + filename + "\"", 3);
+    std::fstream inputFile(filename.c_str(), std::ios::in);
+    if(!inputFile.is_open())
+    {
+        ::debug.print(className + "::" + functionName, "Failed to open inifile", 3);
+        return returnValue;
+    }
+    while(std::getline(inputFile, strToCheck))
+    {
+        ::debug.print(strToCheck);
+        if(strToCheck.empty() || strToCheck[0] == '#')
+            continue;
+        expLine = pwan::strings::explode(strToCheck, "=");
+        ::debug.print(pwan::strings::fromInt(expLine.size()));
+        if(expLine.size() == 2)
+        {
+            for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
+            {
+                expValOpts = pwan::strings::explode(opBlobIter->validParams, ":");
+                if(expLine.at(0) == opBlobIter->longOpt)
+                {
+                    if(opBlobIter->validParams == "!")
+                    {
+                        if(expLine.at(1) == "true")
+                            set(expLine.at(0), "true");
+                        else if(expLine.at(1) == "false")
+                            set(expLine.at(0), "false");
+                    }
+                    else if(opBlobIter->validParams.empty())
+                    {
+                        set(expLine.at(0), expLine.at(1));
+                    }
+                    else if(expValOpts.size() > 1)
+                    {
+                        for(expValOptsIter = expValOpts.begin(); expValOptsIter != expValOpts.end(); ++expValOptsIter)
+                        {
+                            if((*expValOptsIter) == expLine.at(1))
+                                set(expLine.at(0), expLine.at(1));
+                        }
+                    }
+                    else
+                        returnValue.push_back(strToCheck);
+                }
+            }
+        }
+        else
+            returnValue.push_back(strToCheck);
+    }
+    ::debug.print(className + "::" + functionName, "Returning " + pwan::strings::fromInt(returnValue.size()) + " discarded elements", 3);
     return returnValue;
 }
 
