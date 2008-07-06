@@ -12,7 +12,7 @@ pwan::fileInfo::fileInfo()
 	internalsize = 0;
 }
 
-pwan::fileInfo::fileInfo(const std::string &file)
+pwan::fileInfo::fileInfo(const std::string& file)
 {
 	std::ifstream testfile(file.c_str(), std::ios::in);
 	if(!testfile)
@@ -43,12 +43,12 @@ unsigned long long int pwan::fileInfo::size(void)
 	return internalsize;
 }
 
-void pwan::fileInfo::setFileName(std::string newFileName)
+void pwan::fileInfo::setFileName(const std::string& newFileName)
 {
 	internalfilename = newFileName;
 }
 
-void pwan::fileInfo::setPath(std::string newPath)
+void pwan::fileInfo::setPath(const std::string& newPath)
 {
 	internalpath = newPath;
 }
