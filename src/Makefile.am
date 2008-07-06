@@ -11,6 +11,10 @@ pwantools_SOURCES = \
 	pwanstrings.cpp \
 	pwanstrings.h \
 	pwandebug.cpp \
-	pwandebug.h
+	pwandebug.h \
+	pwandir.cpp \
+	pwandir.h \
+	pwanfileinfo.cpp \
+	pwanfileinfo.h
 
 CLEANFILES = *moc *~

@@ -1,14 +1,15 @@
 #include "pwandir.h"
+#include "pwanstrings.h"
 
 pwan::dir::dir(const std::string path)
 {
     currentpath = path;
 }
 
-pwan::fileinfovector pwan::dir::entryInfoList(stringvector filter)
+std::vector<pwan::fileInfo> pwan::dir::entryInfoList(stringvector filter)
 {
     bool inserted = false;
-    pwan::fileinfovector returnvalue;
+    std::vector<pwan::fileInfo> returnvalue;
     std::string ext, tmpfilename;
     DIR *dirpointer;
     struct dirent *dirinfo;
@@ -23,7 +24,7 @@ pwan::fileinfovector pwan::dir::entryInfoList(stringvector filter)
             {
                 if(filter.size() != 0)
                 {
-                    ext = pwan::stringtolower(pwan::getextention(tmpfilename));
+                    ext = pwan::strings::toLower(pwan::getextention(tmpfilename));
                     for(unsigned int i = 0; i != filter.size(); ++i)
                         if(ext == filter.at(i))
                         {
