@@ -3,10 +3,6 @@
 
 #include <vector>
 #include <string>
-#include <fstream>
-#include <iostream>
-
-typedef std::vector<std::string> stringvector;
 
 namespace pwan
 {
@@ -23,7 +19,7 @@ namespace pwan
 			void setFileName(std::string newFileName);
 			void setPath(std::string newPath);
 			void setSize(long long int newSize);
-			
+
 			std::string absolutePath(std::string path);
 
 			std::string internalfilename;

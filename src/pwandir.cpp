@@ -10,7 +10,7 @@ pwan::dir::dir(const std::string path)
     currentpath = path;
 }
 
-std::vector<pwan::fileInfo> pwan::dir::entryInfoList(stringvector filter)
+std::vector<pwan::fileInfo> pwan::dir::entryInfoList(std::vector<std::string> filter)
 {
     bool inserted = false;
     std::vector<pwan::fileInfo> returnvalue;

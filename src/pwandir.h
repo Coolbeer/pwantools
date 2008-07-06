@@ -13,7 +13,7 @@ namespace pwan
         public:
             dir(const std::string path = ".");
 //          fileinfovector readdirectory(std::string path, stringvector filter);
-            std::vector<pwan::fileInfo> entryInfoList(stringvector filter);
+            std::vector<pwan::fileInfo> entryInfoList(std::vector<std::string> filter);
 
         private:
             std::string currentpath;

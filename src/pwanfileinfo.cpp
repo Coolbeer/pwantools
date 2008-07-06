@@ -1,3 +1,6 @@
+#include <fstream>
+#include <iostream>
+
 #include "pwanfileinfo.h"
 #include "pwanutils.h"
 #include "pwanstrings.h"
@@ -71,9 +74,9 @@ std::string pwan::fileInfo::absolutePath(std::string path)
 		delete(tmpcwd);
 		path = cwd + "/" + path;
 	}
-	stringvector expath = pwan::strings::explode(path, "/");
-	stringvector tmpretvalue;
-	for(stringvector::iterator iter = expath.begin(); iter != expath.end(); ++iter)
+	std::vector<std::string> expath = pwan::strings::explode(path, "/");
+	std::vector<std::string> tmpretvalue;
+	for(std::vector<std::string>::iterator iter = expath.begin(); iter != expath.end(); ++iter)
 	{
 		if((*iter) == ".")
 			iter = iter;
@@ -84,7 +87,7 @@ std::string pwan::fileInfo::absolutePath(std::string path)
 		else
 			tmpretvalue.push_back((*iter));
 	}
-	for(stringvector::iterator iter = tmpretvalue.begin(); iter != tmpretvalue.end(); ++iter)
+	for(std::vector<std::string>::iterator iter = tmpretvalue.begin(); iter != tmpretvalue.end(); ++iter)
 		returnvalue += "/" + (*iter);
 	return returnvalue;
 }
