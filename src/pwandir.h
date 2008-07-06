@@ -11,9 +11,8 @@ namespace pwan
     class dir
     {
         public:
-            dir(const std::string path = ".");
-//          fileinfovector readdirectory(std::string path, stringvector filter);
-            std::vector<pwan::fileInfo> entryInfoList(std::vector<std::string> filter);
+            dir(const std::string& path = ".");
+            std::vector<pwan::fileInfo> entryInfoList(const std::vector<std::string>& filter);
 
         private:
             std::string currentpath;

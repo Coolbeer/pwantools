@@ -5,12 +5,12 @@
 #include "pwanstrings.h"
 #include "pwanutils.h"
 
-pwan::dir::dir(const std::string path)
+pwan::dir::dir(const std::string& path)
 {
     currentpath = path;
 }
 
-std::vector<pwan::fileInfo> pwan::dir::entryInfoList(std::vector<std::string> filter)
+std::vector<pwan::fileInfo> pwan::dir::entryInfoList(const std::vector<std::string>& filter)
 {
     bool inserted = false;
     std::vector<pwan::fileInfo> returnvalue;
