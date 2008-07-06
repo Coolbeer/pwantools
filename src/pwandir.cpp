@@ -1,5 +1,9 @@
+#include <iostream>
+#include <dirent.h>
+
 #include "pwandir.h"
 #include "pwanstrings.h"
+#include "pwanutils.h"
 
 pwan::dir::dir(const std::string path)
 {

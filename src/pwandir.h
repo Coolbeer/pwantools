@@ -3,9 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <iostream>
-#include <dirent.h>
-#include "pwanutils.h"
+
 #include "pwanfileinfo.h"
 
 namespace pwan
