@@ -7,6 +7,7 @@ pwantools_SOURCES = \
 	pwanstrings.cpp \
 	pwandebug.cpp \
 	pwandir.cpp \
-	pwanfileinfo.cpp
+	pwanfileinfo.cpp \
+	pwancmdlineparser.cpp
 
 CLEANFILES = *moc *~
