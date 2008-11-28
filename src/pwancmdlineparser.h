@@ -20,11 +20,13 @@ namespace pwan
     class t_cmdlineParser
     {
         public:
+            t_cmdlineParser(void);
             void setAllowedOption(const std::string &shortOpt, const std::string &longOpt, const std::string &description, e_clpFlag flag = NO_PARAMETER);
             p_returnValue setValidParameter(const std::string &longOpt, const std::string &validParams);
-
+            std::string makeHelp(void);
         private:
             std::vector<optionBlob> allowedOptions;
+            int defaultOpt;
     };
 }
 
