@@ -21,6 +21,7 @@ namespace pwan
     {
         public:
             void setAllowedOption(const std::string &shortOpt, const std::string &longOpt, const std::string &description, e_clpFlag flag = NO_PARAMETER);
+            int setValidParameter(const std::string &longOpt, const std::string &validParams);
         private:
             std::vector<optionBlob> allowedOptions;
     };
