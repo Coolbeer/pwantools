@@ -56,10 +56,6 @@ CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(pwantools_SOURCES)
 DIST_SOURCES = $(pwantools_SOURCES)
 ETAGS = etags
@@ -152,21 +148,13 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 pwantools_SOURCES = \
 	main.cpp \
-	main.h \
 	pwanutils.cpp \
-	pwanutils.h \
 	pwanoptions.cpp \
-	pwanoptions.h \
 	pwanpck.cpp \
-	pwanpck.h \
 	pwanstrings.cpp \
-	pwanstrings.h \
 	pwandebug.cpp \
-	pwandebug.h \
 	pwandir.cpp \
-	pwandir.h \
-	pwanfileinfo.cpp \
-	pwanfileinfo.h
+	pwanfileinfo.cpp
 
 CLEANFILES = *moc *~
 all: all-am
