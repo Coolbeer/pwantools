@@ -2,13 +2,27 @@
 #define PWANCMDLINEPARSER_H
 
 #include <string>
+#include <vector>
 
 namespace pwan
 {
-    enum e_clpFlag { NO_PARAMETER = 0, ANY_PARAMETER = 1, DEFAULT_PARAMETER = 2 };
+    enum e_clpFlag { NO_PARAMETER, ANY_PARAMETER, RESTRICTED_PARAMETER, DEFAULT_PARAMETER };
+
+    struct optionBlob
+    {
+        std::string                                 shortOpt;
+        std::string                                 longOpt;
+        std::string                                 description;
+        std::string                                 validParams;
+        e_clpFlag                                   flag;
+    };
+
     class t_cmdlineParser
     {
-        void setAllowedOption(const std::string &shortOpt, const std::string &longOpt, const std::string &description, e_clpFlag flag = NO_PARAMETER);
+        public:
+            void setAllowedOption(const std::string &shortOpt, const std::string &longOpt, const std::string &description, e_clpFlag flag = NO_PARAMETER);
+        private:
+            std::vector<optionBlob> allowedOptions;
     };
 }
 
