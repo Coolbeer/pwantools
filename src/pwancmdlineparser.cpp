@@ -8,19 +8,19 @@ pwan::t_cmdlineParser::t_cmdlineParser(void)
 
 void pwan::t_cmdlineParser::setAllowedOption(const std::string &shortOpt, const std::string &longOpt, const std::string &description, e_clpFlag flag)
 {
-    optionBlob newOption;
+    optBlob newOption;
     newOption.shortOpt = shortOpt;
     newOption.longOpt = longOpt;
     newOption.description = description;
     newOption.flag = flag;
     allowedOptions.push_back(newOption);
     if(flag == DEFAULT_PARAMETER)
-        defaultOpt = allowedOptions.size();
+        defaultOpt = allowedOptions.size()-1;
 }
 
 pwan::p_returnValue pwan::t_cmdlineParser::setValidParameter(const std::string &longOpt, const std::string &validParams)
 {
-    std::vector<optionBlob>::iterator iter;
+    std::vector<optBlob>::iterator iter;
     for(iter = allowedOptions.begin(); iter != allowedOptions.end(); ++iter)
     {
         if(longOpt == iter->longOpt)
@@ -35,7 +35,7 @@ pwan::p_returnValue pwan::t_cmdlineParser::setValidParameter(const std::string &
 std::string pwan::t_cmdlineParser::makeHelp(void)
 {
     std::string returnValue;
-    std::vector<optionBlob>::iterator opBlobIter;
+    std::vector<optBlob>::iterator opBlobIter;
     bool hasOpt = false;
     unsigned int longestShort = 0;
     unsigned int longestLong = 0;
