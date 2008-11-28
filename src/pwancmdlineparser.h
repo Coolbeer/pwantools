@@ -7,7 +7,7 @@
 namespace pwan
 {
     enum e_clpFlag { NO_PARAMETER, ANY_PARAMETER, RESTRICTED_PARAMETER, DEFAULT_PARAMETER };
-
+    enum p_returnValue { P_OK, P_ERROR };
     struct optionBlob
     {
         std::string                                 shortOpt;
@@ -21,7 +21,8 @@ namespace pwan
     {
         public:
             void setAllowedOption(const std::string &shortOpt, const std::string &longOpt, const std::string &description, e_clpFlag flag = NO_PARAMETER);
-            int setValidParameter(const std::string &longOpt, const std::string &validParams);
+            p_returnValue setValidParameter(const std::string &longOpt, const std::string &validParams);
+
         private:
             std::vector<optionBlob> allowedOptions;
     };
