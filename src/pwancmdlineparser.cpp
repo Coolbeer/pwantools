@@ -1,6 +1,8 @@
 #include "pwancmdlineparser.h"
 #include "../config.h"
 
+#include "pwanstrings.h"
+
 pwan::t_cmdlineParser::t_cmdlineParser(void)
 {
     defaultOpt = 0;
@@ -76,4 +78,82 @@ std::string pwan::t_cmdlineParser::makeHelp(void)
     }
     returnValue += "\n";
     return returnValue;
+}
+
+pwan::p_returnValue pwan::t_cmdlineParser::checkCmdLine(int argc, char **argv)
+{
+    std::vector<std::string> args;
+    std::vector<std::string>::iterator vecStrIter;
+
+    if(argc == 1)
+        return P_NO_ARGUMENTS;
+
+    for(int i = 0; i != argc; ++i)
+    {
+        std::string tmpS = argv[i];
+        args.push_back(tmpS);
+    }
+
+    vecStrIter = args.begin()+1;
+    while(vecStrIter != args.end())
+    {
+        for(std::vector<optBlob>::iterator optIter = allowedOptions.begin(); optIter != allowedOptions.end(); ++optIter)
+        {
+            optionsReturn opRetList;
+            if((*vecStrIter) == "-" + optIter->shortOpt || (*vecStrIter) == "--" + optIter->longOpt)
+            {
+                if(optIter->flag == NO_PARAMETER)
+                {
+                    opRetList.option = optIter->longOpt;
+                    setOptions.push_back(opRetList);
+                    break;
+                }
+                else if(optIter->flag == ANY_PARAMETER)
+                {
+                    opRetList.option = optIter->longOpt;
+                    ++vecStrIter;
+                    opRetList.parameter = (*vecStrIter);
+                    setOptions.push_back(opRetList);
+                    break;
+                }
+                else if(optIter->flag == RESTRICTED_PARAMETER)
+                {
+                    bool isFound = false;
+                    opRetList.option = optIter->longOpt;
+                    ++vecStrIter;
+                    std::vector<std::string> expValids;
+                    expValids = pwan::strings::explode(optIter->validParams, ":");
+                    for(std::vector<std::string>::iterator expIter = expValids.begin(); expIter != expValids.end(); ++expIter)
+                    {
+                        if((*expIter) == (*vecStrIter))
+                        {
+                            opRetList.parameter = (*vecStrIter);
+                            isFound = true;
+                            break;
+                        }
+                    }
+                    if(isFound)
+                        setOptions.push_back(opRetList);
+                    else
+                        return P_ERROR;
+                    break;
+                }
+                else if(optIter->flag == DEFAULT_PARAMETER)
+                {
+                    opRetList.option = optIter->longOpt;
+                    ++vecStrIter;
+                    opRetList.parameter = (*vecStrIter);
+                    setOptions.push_back(opRetList);
+                    break;
+                }
+            }
+        }
+        ++vecStrIter;
+    }
+    return P_OK;
+}
+
+std::vector<pwan::optionsReturn> pwan::t_cmdlineParser::returnFoundOptions(void)
+{
+    return setOptions;
 }
