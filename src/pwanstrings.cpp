@@ -1,4 +1,6 @@
 #include <stdexcept>
+#include <stdlib.h>
+
 #include "pwanstrings.h"
 
 std::string pwan::strings::fromInt(int64_t number, unsigned int padding, unsigned int base)

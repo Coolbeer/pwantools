@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <stdlib.h>
 
 #include "pwanfileinfo.h"
 #include "pwanutils.h"

@@ -54,7 +54,7 @@ int pwan::pck::load(std::string fileName)
 
 void pwan::pck::decompressRle(void)
 {
-    std::cout << "hmm?\n";
+/*    std::cout << "hmm?\n";
     for(std::vector< std::vector<char> >::iterator iter = tempImages.begin(); iter != tempImages.end(); ++iter)
     {
         std::cout << "image: " << iter - tempImages.begin() << "\n";
@@ -77,4 +77,5 @@ void pwan::pck::decompressRle(void)
             }
         }
     }
+*/
 }
