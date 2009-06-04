@@ -4,6 +4,7 @@
 #include "pwanoptions.h"
 #include "pwanstrings.h"
 
+#include "pwancmdlineparser.h"
 pwan::debug debug;
 
 void dumplist(std::list<std::string> dumpvalue)
@@ -44,6 +45,24 @@ void testoptions(int argc, char **argv)
     dumplist(options.dump());
 }
 
+void testCmdLineParser(int argc, char **argv)
+{
+    std::vector<pwan::optionsReturn> opRet;
+    pwan::t_cmdlineParser cmdP;
+    cmdP.setAllowedOption("o", "opensource", "Enables Opensource");
+    cmdP.setAllowedOption("a", "autosource", "Enables Autosource");
+    cmdP.setAllowedOption("b", "binarysource", "Specifies What kind of binarysource you want(a,b or c)", pwan::RESTRICTED_PARAMETER);
+    cmdP.setAllowedOption("c", "canadasource", "Location of canadasource", pwan::ANY_PARAMETER);
+    cmdP.setAllowedOption("i", "image", "Image to load", pwan::DEFAULT_PARAMETER);
+    cmdP.setValidParameter("binarysource", "a:b:c");
+    cmdP.checkCmdLine(argc, argv);
+    opRet=cmdP.returnFoundOptions();
+    for(std::vector<pwan::optionsReturn>::iterator i = opRet.begin(); i != opRet.end(); ++i)
+    {
+        std::cout << i->option.c_str() << " ---- " << i->parameter.c_str() << "\n";
+    }
+}
+
 int main(int argc, char *argv[])
 {
     testoptions(argc, argv);
@@ -51,6 +70,8 @@ int main(int argc, char *argv[])
     std::cout << pwan::getextention("firefox.exe") << "\n";
     std::cout << pwan::strings::toLower("HER Var DeT mYe bALL du JA!") << "\n";
     std::cout << pwan::strings::base64Encode("Butikken var aapen i gaar") << "\n";
-    dumpvector(pwan::parsebrackets("for loopen går fra[001-3]"));
+    dumpvector(pwan::parsebrackets("for loopen gï¿½r fra[001-3]"));
+    testCmdLineParser(argc, argv);
     return 0;
+
 }
