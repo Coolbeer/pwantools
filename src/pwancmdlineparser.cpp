@@ -1,5 +1,12 @@
 #include "pwancmdlineparser.h"
+
+#ifdef linux
 #include "../config.h"
+#endif
+
+#ifdef _WIN32
+#define PACKAGE_NAME "pwantools"
+#endif
 
 #include "pwanstrings.h"
 #include <iostream>
@@ -40,8 +47,8 @@ std::string pwan::t_cmdlineParser::makeHelp(void)
     std::string returnValue;
     std::vector<optBlob>::iterator opBlobIter;
     bool hasOpt = false;
-    unsigned int longestShort = 0;
-    unsigned int longestLong = 0;
+    size_t longestShort = 0;
+    size_t longestLong = 0;
 
     returnValue = "Usage: ";
     returnValue += PACKAGE_NAME;

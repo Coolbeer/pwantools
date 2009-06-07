@@ -36,7 +36,7 @@ namespace pwan
        private:
             std::vector<optionsReturn> setOptions;
             std::vector<optBlob> allowedOptions;
-            int defaultOpt;
+            size_t defaultOpt;
     };
 }
 
