@@ -25,7 +25,7 @@ void pwan::t_cmdlineParser::setAllowedOption(const std::string &shortOpt, const 
     newOption.flag = flag;
     allowedOptions.push_back(newOption);
     if(flag == DEFAULT_PARAMETER)
-        defaultOpt = allowedOptions.size()-1;
+        defaultOpt = (int)allowedOptions.size()-1;
 }
 
 pwan::p_returnValue pwan::t_cmdlineParser::setValidParameter(const std::string &longOpt, const std::string &validParams)
