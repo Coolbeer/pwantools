@@ -64,7 +64,8 @@ std::string pwan::readFile(const std::string filename)
 std::vector<std::string> pwan::parsebrackets(const std::string url)
 {
     static std::vector<std::string> returnvalue;
-    size_t startnumber, endnumber, noDigits;
+    size_t startnumber, endnumber;
+    boost::uint8_t noDigits;
     std::string::size_type startbracket, endbracket, separator;
     std::string parsedNumber, newUrl;
 
@@ -78,7 +79,7 @@ std::vector<std::string> pwan::parsebrackets(const std::string url)
             if (separator != std::string::npos && separator < endbracket)
             {
                 parsedNumber = url.substr(startbracket +1, separator - startbracket -1);
-                noDigits = parsedNumber.size();
+                noDigits = (boost::uint8_t)parsedNumber.size();
                 startnumber = atoi(parsedNumber.c_str());
                 parsedNumber = url.substr(separator + 1, endbracket - separator - 1);
                 endnumber = atoi(parsedNumber.c_str());
