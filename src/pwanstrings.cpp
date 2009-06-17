@@ -62,7 +62,7 @@ std::string pwan::strings::toLower(std::string inputstring)
 {
     for(std::string::size_type i = 0; i != inputstring.size(); ++i)
     {
-        inputstring[i] = std::tolower(inputstring[i]);
+        inputstring[i] = (char)std::tolower(inputstring[i]);
     }
     return inputstring;
 }
