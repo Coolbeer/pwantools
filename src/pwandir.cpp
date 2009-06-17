@@ -22,7 +22,7 @@ std::vector<pwan::fileInfo> pwan::dir::entryInfoList(const std::vector<std::stri
     dirpointer = opendir(currentpath.c_str());
     if(dirpointer != NULL)
     {
-        while((dirinfo = readdir(dirpointer)))
+        while((dirinfo = readdir(dirpointer)) != NULL)
         {
             tmpfilename = dirinfo->d_name;
             if(tmpfilename != ".." && tmpfilename != ".")
