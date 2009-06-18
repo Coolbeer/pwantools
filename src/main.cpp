@@ -7,6 +7,8 @@
 #include "pwancmdlineparser.h"
 pwan::debug debug;
 
+unsigned int debugLevel = 1;
+
 void dumplist(std::list<std::string> dumpvalue)
 {
     std::list<std::string>::iterator iter;
@@ -73,5 +75,4 @@ int main(int argc, char *argv[])
     dumpvector(pwan::parsebrackets("for loopen g�r fra[001-3]"));
     testCmdLineParser(argc, argv);
     return 0;
-
 }

@@ -3,10 +3,12 @@
 #include "pwandebug.h"
 #include "pwanstrings.h"
 
+extern unsigned int debugLevel;
+
 pwan::debug::debug(void)
 {
     className = "debug";
-    curDebugLevel = 1;
+    curDebugLevel = debugLevel;
     maxSavedLog = 20;
 }
 
