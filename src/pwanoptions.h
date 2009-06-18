@@ -41,11 +41,10 @@ namespace pwan
             std::vector<std::string>                checkCmdLine(int argc, char** argv);
             std::vector<std::string>                checkCmdLine(const std::vector<std::string>& args);
             std::string                             makeHelp(void);
-        private:
-            dataBlob                                *data;
-            std::string                             className;
-        protected:
             void                                    setDataBlob(dataBlob *newData);
+        private:
+            std::string                             className;
+            dataBlob                                *data;
     };
 }
 

@@ -11,6 +11,7 @@ extern pwan::debug debug;
 pwan::options::options(void)
 {
     className = "pwan::options";
+    data = NULL;
 }
 
 int pwan::options::set(const std::string& name, const std::string& value)
@@ -57,6 +58,7 @@ std::list<std::string> pwan::options::dump(void)
         returnvalue.push_back((*iter).first);
         returnvalue.push_back((*iter).second);
     }
+    return returnvalue;
 }
 
 pwan::p_returnValue pwan::options::setOption(const std::string& shortOpt, const std::string& longOpt, const std::string& description, const std::string& validParams)
