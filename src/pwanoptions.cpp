@@ -6,8 +6,8 @@
 #include "pwanstrings.h"
 #include "pwantools_enums.h"
 
-extern pwan::debug debug;
-
+//extern pwan::debug debug;
+extern unsigned int debugLevel;
 pwan::options::options(void)
 {
     className = "pwan::options";
@@ -17,7 +17,7 @@ pwan::options::options(void)
 int pwan::options::set(const std::string& name, const std::string& value)
 {
     std::string functionName = "set";
-    ::debug.print(className + "::" + functionName, name + " = " + value, 3);
+    dprint(className + "::" + functionName, name + " = " + value, 3);
     if(!data)
         return P_ERROR;
     data->internalData[name] = value;
@@ -28,18 +28,18 @@ int pwan::options::set(const std::string& name, const std::string& value)
 std::string pwan::options::get(const std::string& name)
 {
     std::string functionName = "get";
-    ::debug.print(className + "::" + functionName, "name = " + name, 3);
+    dprint(className + "::" + functionName, "name = " + name, 3);
     if(!data)
         return "";
 
     if(data->internalData.find(name) != data->internalData.end())
     {
-        ::debug.print(className + "::" + functionName, "Returning: " + (*(data->internalData.find(name))).second, 3);
+        dprint(className + "::" + functionName, "Returning: " + (*(data->internalData.find(name))).second, 3);
         return (*(data->internalData.find(name))).second;
     }
     else
     {
-        ::debug.print(className + "::" + functionName, "Returning empty string(option not found) " , 3);
+        dprint(className + "::" + functionName, "Returning empty string(option not found) " , 3);
         return "";
     }
 }
@@ -48,7 +48,7 @@ std::string pwan::options::get(const std::string& name)
 std::list<std::string> pwan::options::dump(void)
 {
     std::string functionName = "dump";
-    ::debug.print(className + "::" + functionName, "Dumping options", 3);
+    dprint(className + "::" + functionName, "Dumping options", 3);
     std::list<std::string> returnvalue;
     if(!data)
         return returnvalue;
@@ -64,7 +64,7 @@ std::list<std::string> pwan::options::dump(void)
 pwan::p_returnValue pwan::options::setOption(const std::string& shortOpt, const std::string& longOpt, const std::string& description, const std::string& validParams)
 {
     const std::string functionName("setOption");
-    ::debug.print(className + "::" + functionName, "shortOpt = \"" + shortOpt + "\", longOpt = \"" + longOpt + "\"", 3);
+    dprint(className + "::" + functionName, "shortOpt = \"" + shortOpt + "\", longOpt = \"" + longOpt + "\"", 3);
     if(!data)
         return P_ERROR;
     if(longOpt.empty())
@@ -128,7 +128,7 @@ std::string pwan::options::makeHelp(void)
         }
     }
     returnValue += "\n";
-    ::debug.print(className + "::" + functionName, "Returning a string of " + pwan::strings::fromInt(returnValue.size()) + " bytes", 3);
+    dprint(className + "::" + functionName, "Returning a string of " + pwan::strings::fromInt(returnValue.size()) + " bytes", 3);
     return returnValue;
 }
 
@@ -144,11 +144,11 @@ std::vector<std::string> pwan::options::checkIniFile(const std::string& filename
     if(!data)
         return returnValue;
 
-    ::debug.print(className + "::" + functionName, "Filename = \"" + filename + "\"", 3);
+    dprint(className + "::" + functionName, "Filename = \"" + filename + "\"", 3);
     std::fstream inputFile(filename.c_str(), std::ios::in);
     if(!inputFile.is_open())
     {
-        ::debug.print(className + "::" + functionName, "Failed to open inifile", 3);
+        dprint(className + "::" + functionName, "Failed to open inifile", 3);
         return returnValue;
     }
     while(std::getline(inputFile, strToCheck))
@@ -190,7 +190,7 @@ std::vector<std::string> pwan::options::checkIniFile(const std::string& filename
         else
             returnValue.push_back(strToCheck);
     }
-    ::debug.print(className + "::" + functionName, "Returning " + pwan::strings::fromInt(returnValue.size()) + " discarded elements", 3);
+    dprint(className + "::" + functionName, "Returning " + pwan::strings::fromInt(returnValue.size()) + " discarded elements", 3);
     return returnValue;
 }
 
@@ -218,7 +218,7 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
     if(!data)
         return returnValue;
 
-    ::debug.print(className + "::" + functionName, "Checking a vector of " + pwan::strings::fromInt(args.size()) + " elements", 3);
+    dprint(className + "::" + functionName, "Checking a vector of " + pwan::strings::fromInt(args.size()) + " elements", 3);
     if(!args.empty())
         data->programName = args.at(0);
     for(opBlobIter = data->allowedOptions.begin(); opBlobIter != data->allowedOptions.end(); ++opBlobIter)
@@ -316,7 +316,7 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
             }
         }
     }
-    ::debug.print(className + "::" + functionName, "Returning " + pwan::strings::fromInt(returnValue.size()) + " discarded elements", 3);
+    dprint(className + "::" + functionName, "Returning " + pwan::strings::fromInt(returnValue.size()) + " discarded elements", 3);
     return returnValue;
 }
 

@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "pwantools_enums.h"
+#include "pwandebug.h"
 
 namespace pwan
 {
@@ -26,7 +27,7 @@ namespace pwan
         std::string                             programName;
     };
 
-    class options
+    class options : public debug
     {
         public:
                                                     options(void);
