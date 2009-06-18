@@ -6,6 +6,8 @@
 #include <map>
 #include <vector>
 
+#include "pwantools_enums.h"
+
 namespace pwan
 {
     struct optionBlob
@@ -16,6 +18,14 @@ namespace pwan
         std::string                                 validParams;
     };
 
+    struct dataBlob
+    {
+        std::map<std::string, std::string>      internalData;
+        std::vector<optionBlob>                 allowedOptions;
+        std::string                             defaultOpt;
+        std::string                             programName;
+    };
+
     class options
     {
         public:
@@ -23,7 +33,7 @@ namespace pwan
             int                                     set(const std::string& name, const std::string& value);
             std::string                             get(const std::string& name);
             std::list<std::string>                  dump(void);
-            void                                    setOption(const std::string& shortOpt,                      //Optional
+            p_returnValue                           setOption(const std::string& shortOpt,                      //Optional
                                                               const std::string& longOpt,                       //Mandatory
                                                               const std::string& description,                   //Optional
                                                               const std::string& validParams);                  //Optional(empty = any parameter, ! = no parameter, * = default parameter)
@@ -32,11 +42,10 @@ namespace pwan
             std::vector<std::string>                checkCmdLine(const std::vector<std::string>& args);
             std::string                             makeHelp(void);
         private:
-            std::map<std::string, std::string>      internalData;
-            std::string className;
-            std::vector<optionBlob>                 allowedOptions;
-            std::string                             defaultOpt;
-            std::string                             programName;
+            dataBlob                                *data;
+            std::string                             className;
+        protected:
+            void                                    setDataBlob(dataBlob *newData);
     };
 }
 
