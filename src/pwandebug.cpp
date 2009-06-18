@@ -15,7 +15,7 @@ void pwan::debug::dprint(const std::string& from, const std::string& message, un
 {
     std::string completeMessage;
     completeMessage = from + ": " + message;
-    if(p_debugLevel >= debugLevel)
+    if(debugLevel >= p_debugLevel)
         dprint(completeMessage);
     else
     {
