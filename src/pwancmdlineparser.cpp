@@ -4,9 +4,12 @@
 
 #include <iostream>
 
+std::map<std::string, std::string> pwan::t_cmdlineParser::internalData;
+
 pwan::t_cmdlineParser::t_cmdlineParser(void)
 {
     defaultOpt = -1;
+    className = "t_cmdlineParser";
 }
 
 void pwan::t_cmdlineParser::setAllowedOption(const std::string &shortOpt, const std::string &longOpt, const std::string &description, e_clpFlag flag)
@@ -185,4 +188,30 @@ pwan::p_returnValue pwan::t_cmdlineParser::checkCmdLine(int argc, char **argv)
 std::vector<pwan::optionsReturn> pwan::t_cmdlineParser::returnFoundOptions(void)
 {
     return setOptions;
+}
+
+pwan::p_returnValue pwan::t_cmdlineParser::get(const std::string &name, std::string &returnValue)
+{
+    std::string functionName("get");
+    dprint(className + "::" + functionName, name, 3);
+
+    if(internalData.find(name) != internalData.end())
+    {
+        dprint(className + "::" + functionName, "Returning: " + internalData.find(name)->second, 3);
+        returnValue = internalData.find(name)->second;
+        return P_OK;
+    }
+    else
+    {
+        dprint(className + "::" + functionName, "Not found(" + name +")", 3);
+        return P_NOT_FOUND;       
+    }
+}
+
+pwan::p_returnValue pwan::t_cmdlineParser::set(const std::string &name, const std::string &value)
+{
+    std::string functionName("set");
+    dprint(className + "::" + functionName, name + " = " + value, 3);
+    internalData[name] = value;
+    return P_OK;
 }

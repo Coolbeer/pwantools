@@ -3,7 +3,6 @@
 #include "pwandebug.h"
 #include "pwanstrings.h"
 
-
 unsigned int pwan::debug::debugLevel;
 std::vector<pwan::t_savedMessage> pwan::debug::savedMessages;
 
