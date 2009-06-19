@@ -11,9 +11,15 @@ pwan::debug::debug(void)
     className = "debug";
     maxSavedLog = 20;
 }
-
+#ifdef linux
+void __attribute__ ((unused)) pwan::debug::dprint(const std::string& from, const std::string& message, unsigned int p_debugLevel)
+#endif
+#ifdef _WIN32
+#pragma warning(disable: 4100)
 void pwan::debug::dprint(const std::string& from, const std::string& message, unsigned int p_debugLevel)
+#endif
 {
+#ifndef P_NDEBUG
     std::string completeMessage;
     completeMessage = from + ": " + message;
     if(debugLevel >= p_debugLevel)
@@ -27,7 +33,12 @@ void pwan::debug::dprint(const std::string& from, const std::string& message, un
         if(savedMessages.size() > maxSavedLog)
             savedMessages.erase(savedMessages.begin());
     }
+#endif
 }
+
+#ifdef _WIN32
+#pragma warning(default: 4100)
+#endif
 
 void pwan::debug::dprint(const std::string& message)
 {
