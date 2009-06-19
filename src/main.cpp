@@ -5,9 +5,6 @@
 #include "pwanstrings.h"
 
 #include "pwancmdlineparser.h"
-pwan::debug debug;
-
-unsigned int debugLevel = 1;
 
 void dumplist(std::list<std::string> dumpvalue)
 {
@@ -30,6 +27,7 @@ void dumpvector(std::vector<std::string> dumpvalue)
 void testoptions(int argc, char **argv)
 {
     pwan::options options;
+    pwan::debug debug;
     options.setOption("V", "version", "Prints versionstring", "!");
     options.setOption("b", "browserid", "Set browserid", "");
     options.setOption("", "secure-protocol", "choose secure protocol, one of auto, SSLv2, SSLv3, and TLSv1", "auto:SSLv2:SSLv3:TLSv1");
@@ -65,6 +63,15 @@ void testCmdLineParser(int argc, char **argv)
     }
 }
 
+void testDebugClass(void)
+{
+    pwan::debug db;
+    pwan::debug db2;
+    db.dprint("me,","satas?", 14);
+    db2.dprint("me2","santa?", 9);
+    db2.setDebugLevel(22);
+}
+
 int main(int argc, char *argv[])
 {
     testoptions(argc, argv);
@@ -74,5 +81,6 @@ int main(int argc, char *argv[])
     std::cout << pwan::strings::base64Encode("Butikken var aapen i gaar") << "\n";
     dumpvector(pwan::parsebrackets("for loopen g�r fra[001-3]"));
     testCmdLineParser(argc, argv);
+    testDebugClass();
     return 0;
 }
