@@ -30,10 +30,10 @@ namespace pwan
     {
         public:
                                                         t_cmdlineParser(void);
-            void                                        setAllowedOption(const std::string &shortOpt, const std::string &longOpt, const std::string &description, e_clpFlag flag = NO_PARAMETER);
+            void                                        setAllowedOption(const std::string &shortOpt, const std::string &longOpt, const std::string &description, const e_clpFlag &flag = NO_PARAMETER);
             p_returnValue                               setValidParameter(const std::string &longOpt, const std::string &validParams);
             std::string                                 makeHelp(void);
-            p_returnValue                               checkCmdLine(int argc, char **argv);
+            p_returnValue                               checkCmdLine(const int &argc, char **argv);
             std::vector<optionsReturn>                  returnFoundOptions(void);
             p_returnValue                               get(const std::string &name, std::string &returnValue);
             p_returnValue                               set(const std::string &name, const std::string &value);
