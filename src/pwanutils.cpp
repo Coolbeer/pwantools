@@ -2,6 +2,7 @@
 #include <sys/stat.h>
 #include <iostream>
 #include <stdlib.h>
+#include <boost/filesystem.hpp>
 
 #ifdef _WIN32
 #include <direct.h>
@@ -10,11 +11,24 @@
 #include "pwanutils.h"
 #include "pwanstrings.h"
 
-std::string pwan::getextention(const std::string& filename)
+pwan::p_returnValue pwan::getextention(const std::string &filename, std::string &returnValue)
 {
-    std::vector<std::string> exfilename = pwan::strings::explode(filename, ".");
-    if(exfilename.size() > 1)
-        return *(exfilename.end() -1);
+    boost::filesystem::path bfs;
+    bfs = boost::filesystem::system_complete(filename);
+    if(bfs.extension() != "")
+        return P_ERROR;
+    else
+    {
+        returnValue = bfs.extension();
+        return P_OK;
+    }
+}
+
+std::string pwan::getextention(const std::string &filename)
+{
+    std::string returnValue;
+    if(getextention(filename, returnValue) == P_OK)
+        return returnValue;
     else
         return "";
 }
@@ -154,7 +168,7 @@ std::vector<std::string> pwan::html::getImageLinks(std::string filename)
                         returnvalue.push_back(url);
                 }
             }
-            
+
         }
     }
     return returnvalue;

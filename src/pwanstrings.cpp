@@ -19,7 +19,7 @@ std::string pwan::strings::fromInt(boost::int64_t number, boost::uint8_t padding
         throw std::out_of_range("Base not in range");
     do
     {
-		boost::uint8_t remainder = number % base;
+        boost::uint8_t remainder = number % base;
         returnvalue = numbers.at(remainder) + returnvalue;
         number = number / base;
     } while(number);

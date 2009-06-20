@@ -1,6 +1,15 @@
 /* config.h.  Generated from config.h.in by configure.  */
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* define if the Boost library is available */
+#define HAVE_BOOST /**/
+
+/* define if the Boost::Filesystem library is available */
+#define HAVE_BOOST_FILESYSTEM /**/
+
+/* define if the Boost::Thread library is available */
+#define HAVE_BOOST_THREAD /**/
+
 /* Name of package */
 #define PACKAGE "pwantools"
 

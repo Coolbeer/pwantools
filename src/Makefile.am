@@ -11,3 +11,6 @@ pwantools_SOURCES = \
 	pwancmdlineparser.cpp
 
 CLEANFILES = *moc *~
+
+AM_CXXFLAGS = $(BOOST_CPPFLAGS)
+AM_LDFLAGS =  $(BOOST_LDFLAGS) $(BOOST_FILESYSTEM_LIB)

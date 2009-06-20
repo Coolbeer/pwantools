@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+#include "pwantools_enums.h"
+
 namespace pwan
 {
     class doubleint
@@ -21,7 +23,8 @@ namespace pwan
 
     enum fileWriteMode {OverWrite, Append};
 
-    std::string                     getextention(const std::string& filename);
+    p_returnValue                   getextention(const std::string &filename, std::string &returnValue);
+    std::string                     getextention(const std::string &filename);
     float                           calculatezoom(int imagedims[2], int displaydims[2]);
     doubleint                       calculateoffset(int imagedims[2], int displaydims[2]);
 
