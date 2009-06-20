@@ -12,11 +12,13 @@ pwan::debug::debug(void)
     maxSavedLog = 20;
 }
 #ifdef linux
-void __attribute__ ((unused)) pwan::debug::dprint(const std::string& from, const std::string& message, unsigned int p_debugLevel)
+void pwan::debug::dprint(__attribute__((unused)) const std::string &from,
+                         __attribute__((unused)) const std::string &message,
+                         __attribute__((unused)) const unsigned int &p_debugLevel)
 #endif
 #ifdef _WIN32
 #pragma warning(disable: 4100)
-void pwan::debug::dprint(const std::string& from, const std::string& message, unsigned int p_debugLevel)
+void pwan::debug::dprint(const std::string &from, const std::string &message, const unsigned int &p_debugLevel)
 #endif
 {
 #ifndef P_NDEBUG
@@ -35,17 +37,16 @@ void pwan::debug::dprint(const std::string& from, const std::string& message, un
     }
 #endif
 }
-
 #ifdef _WIN32
 #pragma warning(default: 4100)
 #endif
 
-void pwan::debug::dprint(const std::string& message)
+void pwan::debug::dprint(const std::string &message)
 {
     std::cout << message << "\n";
 }
 
-void pwan::debug::setDebugLevel(unsigned int NewdebugLevel)
+void pwan::debug::setDebugLevel(const unsigned int &NewdebugLevel)
 {
     std::string functionName("setDebugLevel");
     std::vector<t_savedMessage>::iterator iter;
