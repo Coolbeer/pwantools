@@ -15,7 +15,7 @@ pwan::p_returnValue pwan::getextention(const std::string &filename, std::string 
 {
     boost::filesystem::path bfs;
     bfs = boost::filesystem::system_complete(filename);
-    if(bfs.extension() != "")
+    if(bfs.extension() == "")
         return P_ERROR;
     else
     {
