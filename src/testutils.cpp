@@ -14,7 +14,7 @@ void testGetExtention(void)
     std::ofstream testfile("img.tmp");
     pwan::p_returnValue ret = pwan::getextention("img.tmp", hepp);
     if(ret != pwan::P_OK)
-        pTest.report("pwan::getextention", pwan::PT_PENDING);
+        pTest.report("pwan::getextention", pwan::PT_FAIL);
     else
     {
         if(hepp == ".tmp")
@@ -26,6 +26,6 @@ void testGetExtention(void)
     if(hepp == ".tmp")
         pTest.report("pwan::getextention", pwan::PT_OK);
     else
-        pTest.report("pwan::getextention", pwan::PT_PENDING);
+        pTest.report("pwan::getextention", pwan::PT_FAIL);
     pTest.writeStatus("pwan::getextention");
 }
