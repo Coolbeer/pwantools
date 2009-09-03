@@ -17,7 +17,7 @@ void testGetExtention(void)
         pTest.report("pwan::getextention", pwan::PT_PENDING);
     else
     {
-        if(hepp == ".tmp")
+        if(hepp == "tmp")
             pTest.report("pwan::getextention", pwan::PT_OK);
         else
             pTest.report("pwan::getextention", pwan::PT_FAIL);
