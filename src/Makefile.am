@@ -17,7 +17,9 @@ pwantools_SOURCES = \
 	pwanfileinfo.cpp \
 	pwanfileinfo.h \
 	pwancmdlineparser.cpp \
-	pwancmdlineparser.h
+	pwancmdlineparser.h \
+	testtool.cpp \
+	testtool.h
 
 CLEANFILES = *moc *~
 
