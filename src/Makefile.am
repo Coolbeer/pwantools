@@ -21,7 +21,9 @@ pwantools_SOURCES = \
 	testtool.cpp \
 	testtool.h \
 	teststrings.cpp \
-	teststrings.h
+	teststrings.h \
+	testutils.cpp \
+	testutils.h
 
 CLEANFILES = *moc *~
 

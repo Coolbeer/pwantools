@@ -6,10 +6,10 @@
 
 #include "pwancmdlineparser.h"
 #include "testtool.h"
+#include "teststrings.h"
+#include "testutils.h"
 
 pwan::testTool pTest;
-
-#include "teststrings.h"
 
 void dumplist(std::list<std::string> dumpvalue)
 {
@@ -85,10 +85,15 @@ void testStrings(void)
     testStringBase64Encode();
     testStringDupeChar();
 }
+void testUtils(void)
+{
+    testGetExtention();
+}
 
 int main(int argc, char *argv[])
 {
     testStrings();
+    testUtils();
     testCmdLineParser(argc, argv);
     return 0;
 }
