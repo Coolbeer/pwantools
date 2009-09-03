@@ -77,7 +77,7 @@ void testDebugClass(void)
     db2.setDebugLevel(22);
 }
 
-void testString(void)
+void testStrings(void)
 {
     testStringFromInt();
     testStringExplode();
@@ -88,7 +88,7 @@ void testString(void)
 
 int main(int argc, char *argv[])
 {
-    testString();
+    testStrings();
     testCmdLineParser(argc, argv);
     return 0;
 }
