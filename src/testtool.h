@@ -4,10 +4,10 @@
 #include <string>
 #include <map>
 
+#include "pwantools_enums.h"
+
 namespace pwan
 {
-    enum p_testResult { PT_OK, PT_FAIL, PT_PENDING, PT_WTF };
-
     struct storage
     {
         int                                     noOfTests;
