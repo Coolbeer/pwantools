@@ -108,12 +108,7 @@ pwan::p_returnValue pwan::t_cmdlineParser::checkCmdLine(const int &argc, char **
     if(argc == 1)
         return P_NO_ARGUMENTS;
 
-    for(int i = 0; i != argc; ++i)                                                  //put the argv in a vector<string>
-    {
-        std::string tmpS = argv[i];
-        args.push_back(tmpS);
-    }
-
+    args = makeStrVectorFromCharArray(argc, argv);
     vecStrIter = args.begin()+1;
     while(vecStrIter != args.end())
     {
@@ -204,6 +199,17 @@ pwan::p_returnValue pwan::t_cmdlineParser::checkCmdLine(const int &argc, char **
         ++vecStrIter;
     }
     return P_OK;
+}
+
+std::vector<std::string> pwan::t_cmdlineParser::makeStrVectorFromCharArray(const int &argc, char **argv)
+{
+    std::vector<std::string> returnValue;
+    for(int i = 0; i != argc; ++i)                                                  //put the argv in a vector<string>
+    {
+        std::string tmpS = argv[i];
+        returnValue.push_back(tmpS);
+    }
+    return returnValue;
 }
 
 std::vector<pwan::optionsReturn> pwan::t_cmdlineParser::returnFoundOptions(void)

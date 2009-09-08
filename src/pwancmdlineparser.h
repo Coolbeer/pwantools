@@ -44,6 +44,7 @@ namespace pwan
         private:
             boost::uint64_t                             findLongestShort(void);
             boost::uint64_t                             findLongestLong(void);
+            std::vector<std::string>                    makeStrVectorFromCharArray(const int &argc, char **argv);
             std::vector<optionsReturn>                  setOptions;
             static std::map<std::string, std::string>   internalData;
             std::vector<optBlob>                        allowedOptions;
