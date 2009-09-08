@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <boost/cstdint.hpp>
 
 #include "pwantools_enums.h"
 #include "pwandebug.h"
@@ -41,6 +42,8 @@ namespace pwan
             p_returnValue                               get(const std::string &name, std::string &returnValue);
             p_returnValue                               set(const std::string &name, const std::string &value);
         private:
+            boost::uint64_t                             findLongestShort(void);
+            boost::uint64_t                             findLongestLong(void);
             std::vector<optionsReturn>                  setOptions;
             static std::map<std::string, std::string>   internalData;
             std::vector<optBlob>                        allowedOptions;

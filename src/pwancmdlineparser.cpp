@@ -2,8 +2,6 @@
 #include "../config.h"
 #include "pwanstrings.h"
 
-#include <iostream>
-
 std::map<std::string, std::string> pwan::t_cmdlineParser::internalData;
 
 pwan::t_cmdlineParser::t_cmdlineParser(void)
@@ -43,8 +41,8 @@ std::string pwan::t_cmdlineParser::makeHelp(void)
     std::string returnValue;
     std::vector<optBlob>::iterator opBlobIter;
     bool hasOpt = false;
-    size_t longestShort = 0;
-    size_t longestLong = 0;
+    boost::uint64_t longestShort = 0;
+    boost::uint64_t longestLong = 0;
 
     returnValue = "Usage: ";
     returnValue += PACKAGE_NAME;
@@ -61,13 +59,8 @@ std::string pwan::t_cmdlineParser::makeHelp(void)
     if(hasOpt)
     {
         returnValue += "\n\nWhere [OPTIONS] is one of the following:\n";
-        for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
-        {
-            if(opBlobIter->shortOpt.size() > longestShort)
-                longestShort = opBlobIter->shortOpt.size();
-            if(opBlobIter->longOpt.size() > longestLong)
-                longestLong = opBlobIter->longOpt.size();
-        }
+        longestShort = findLongestShort();
+        longestLong = findLongestLong();
         for(opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
         {
             if(opBlobIter->longOpt == allowedOptions.at(defaultOpt).longOpt)
@@ -81,6 +74,28 @@ std::string pwan::t_cmdlineParser::makeHelp(void)
         }
     }
     returnValue += "\n";
+    return returnValue;
+}
+
+boost::uint64_t pwan::t_cmdlineParser::findLongestShort(void)
+{
+    size_t returnValue = 0;
+    for(std::vector<optBlob>::iterator opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
+    {
+        if(opBlobIter->shortOpt.size() > returnValue)
+            returnValue = opBlobIter->shortOpt.size();
+    }
+    return returnValue;
+}
+
+boost::uint64_t pwan::t_cmdlineParser::findLongestLong(void)
+{
+    size_t returnValue = 0;
+    for(std::vector<optBlob>::iterator opBlobIter = allowedOptions.begin(); opBlobIter != allowedOptions.end(); ++opBlobIter)
+    {
+        if(opBlobIter->longOpt.size() > returnValue)
+            returnValue = opBlobIter->longOpt.size();
+    }
     return returnValue;
 }
 
