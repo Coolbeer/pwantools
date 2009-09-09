@@ -8,6 +8,7 @@
 #include "testtool.h"
 #include "teststrings.h"
 #include "testutils.h"
+#include "testcmdlineparser.h"
 
 pwan::testTool pTest;
 
@@ -50,24 +51,6 @@ void testoptions(int argc, char **argv)
     dumplist(options.dump());
 }
 
-void testCmdLineParser(int argc, char **argv)
-{
-    std::vector<pwan::optionsReturn> opRet;
-    pwan::t_cmdlineParser cmdP;
-    cmdP.setAllowedOption("o", "opensource", "Enables Opensource");
-    cmdP.setAllowedOption("a", "autosource", "Enables Autosource");
-    cmdP.setAllowedOption("b", "binarysource", "Specifies What kind of binarysource you want(a,b or c)", pwan::RESTRICTED_PARAMETER);
-    cmdP.setAllowedOption("c", "canadasource", "Location of canadasource", pwan::ANY_PARAMETER);
-    cmdP.setAllowedOption("i", "image", "Image to load", pwan::DEFAULT_PARAMETER);
-    cmdP.setValidParameter("binarysource", "a:b:c");
-    cmdP.checkCmdLine(argc, argv);
-    opRet=cmdP.returnFoundOptions();
-    for(std::vector<pwan::optionsReturn>::iterator i = opRet.begin(); i != opRet.end(); ++i)
-    {
-        std::cout << i->option.c_str() << " ---- " << i->parameter.c_str() << "\n";
-    }
-}
-
 void testDebugClass(void)
 {
     pwan::debug db;
@@ -75,6 +58,11 @@ void testDebugClass(void)
     db.dprint("me,","satas?", 14);
     db2.dprint("me2","santa?", 9);
     db2.setDebugLevel(22);
+}
+
+void testCmdLineParser(void)
+{
+    testCheckCmdLine();
 }
 
 void testStrings(void)
@@ -90,10 +78,10 @@ void testUtils(void)
     testGetExtention();
 }
 
-int main(int argc, char *argv[])
+int main(void)
 {
     testStrings();
     testUtils();
-    testCmdLineParser(argc, argv);
+    testCmdLineParser();
     return 0;
 }
