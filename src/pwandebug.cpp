@@ -35,7 +35,10 @@ void pwan::debug::dprint(const std::string &from, const std::string &message, co
     if(debugLevel >= p_debugLevel)
     {
         if(!iMute)
+        {
             std::cout << completeMessage;
+            std::cout.flush();
+        }
     }
     else
     {
