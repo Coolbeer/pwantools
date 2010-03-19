@@ -3,12 +3,14 @@
 #include "pwandebug.h"
 #include "pwanoptions.h"
 #include "pwanstrings.h"
+#include "pwandebug.h"
 
 #include "pwancmdlineparser.h"
 #include "testtool.h"
 #include "teststrings.h"
 #include "testutils.h"
 #include "testcmdlineparser.h"
+#include "testdebug.h"
 
 pwan::testTool pTest;
 
@@ -51,15 +53,6 @@ void testoptions(int argc, char **argv)
     dumplist(options.dump());
 }
 
-void testDebugClass(void)
-{
-    pwan::debug db;
-    pwan::debug db2;
-    db.dprint("me,","satas?", 14);
-    db2.dprint("me2","santa?", 9);
-    db2.setDebugLevel(22);
-}
-
 void testCmdLineParser(void)
 {
     testCheckCmdLine();
@@ -78,10 +71,17 @@ void testUtils(void)
     testGetExtention();
 }
 
+void testDebug(void)
+{
+    getDebugLevel();
+    setDebugLevel();
+}
+
 int main(void)
 {
     testStrings();
     testUtils();
     testCmdLineParser();
+    testDebug();
     return 0;
 }

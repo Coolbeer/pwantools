@@ -25,14 +25,17 @@ namespace pwan
         public:
                                                     debug(void);
             void                                    dprint(const std::string &from, const std::string &message, const unsigned int &p_debugLevel = 1);
-            void                                    dprint(const std::string &message);
-            void                                    setDebugLevel(const unsigned int &debugLevel);
+            void                                    dprint(const std::string &message, const unsigned int p_debugLevel = 1);
+            int                                     setDebugLevel(const unsigned int &debugLevel);
             int                                     getDebugLevel(void);
+            void                                    mute(void);
+            void                                    unMute(void);
         private:
             std::string                             className;
             static std::vector<t_savedMessage>      savedMessages;
             static unsigned int                     debugLevel;
             unsigned int                            maxSavedLog;
+            bool                                    iMute;
     };
 }
 #endif
