@@ -22,13 +22,13 @@ namespace pwan
     {
         public:
                                                     options(void);
-            int                                     set(const std::string& name, const std::string& value);
-            std::string                             get(const std::string& name);
+            int                                     setValue(const std::string& name, const std::string& value);
+            std::string                             getValue(const std::string& name);
             std::list<std::string>                  dump(void);
-            void                                    setOption(const std::string& shortOpt,                      //Optional
-                                                              const std::string& longOpt,                       //Mandatory
-                                                              const std::string& description,                   //Optional
-                                                              const std::string& validParams);                  //Optional(empty = any parameter, ! = no parameter, * = default parameter)
+            void                                    setParameter(   const std::string& shortOpt,                      //Optional
+                                                                    const std::string& longOpt,                       //Mandatory
+                                                                    const std::string& description,                   //Optional
+                                                                    const std::string& validParams);                  //Optional(empty = any parameter, ! = no parameter, * = default parameter)
             std::vector<std::string>                checkIniFile(const std::string& filename);
             std::vector<std::string>                checkCmdLine(int argc, char** argv);
             std::vector<std::string>                checkCmdLine(const std::vector<std::string>& args);

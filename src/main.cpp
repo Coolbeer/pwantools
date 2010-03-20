@@ -32,27 +32,6 @@ void dumpvector(std::vector<std::string> dumpvalue)
     }
 }
 
-void testoptions(int argc, char **argv)
-{
-    pwan::options options;
-    pwan::debug debug;
-    options.setOption("V", "version", "Prints versionstring", "!");
-    options.setOption("b", "browserid", "Set browserid", "");
-    options.setOption("", "secure-protocol", "choose secure protocol, one of auto, SSLv2, SSLv3, and TLSv1", "auto:SSLv2:SSLv3:TLSv1");
-    options.setOption("", "url", "", "*");
-    options.setOption("d", "debug", "Enable verbose debug info", "!");
-    options.checkIniFile("setup.ini");
-    options.checkCmdLine(argc, argv);
-    std::cout << options.makeHelp();
-    if(options.get("debug") == "true")
-        debug.setDebugLevel(3);
-    for (int i = 105; i != 110; ++i)
-    {
-        options.set("test" + pwan::strings::fromInt(i, 4), "funker dette?" + pwan::strings::fromInt(i, 8));
-    }
-    dumplist(options.dump());
-}
-
 void testCmdLineParser(void)
 {
     testCheckCmdLine();

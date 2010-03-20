@@ -9,17 +9,17 @@ pwan::options::options(void)
     className = "pwan::options";
 }
 
-int pwan::options::set(const std::string& name, const std::string& value)
+int pwan::options::setValue(const std::string& name, const std::string& value)
 {
-    std::string functionName = "set";
+    std::string functionName = "setValue";
     dprint(className + "::" + functionName, name + " = " + value, 3);
     internalData[name] = value;
     return 0;
 }
 
-std::string pwan::options::get(const std::string& name)
+std::string pwan::options::getValue(const std::string& name)
 {
-    std::string functionName = "get";
+    std::string functionName = "getValue";
     dprint(className + "::" + functionName, "name = " + name + "\n", 3);
     if(internalData.find(name) != internalData.end())
     {
@@ -46,7 +46,7 @@ std::list<std::string> pwan::options::dump(void)
     return returnvalue;
 }
 
-void pwan::options::setOption(const std::string& shortOpt, const std::string& longOpt, const std::string& description, const std::string& validParams)
+void pwan::options::setParameter(const std::string& shortOpt, const std::string& longOpt, const std::string& description, const std::string& validParams)
 {
     const std::string functionName("setOption");
     optionBlob newOption;
@@ -141,20 +141,20 @@ std::vector<std::string> pwan::options::checkIniFile(const std::string& filename
                     if(opBlobIter->validParams == "!")
                     {
                         if(expLine.at(1) == "true")
-                            set(expLine.at(0), "true");
+                            setValue(expLine.at(0), "true");
                         else if(expLine.at(1) == "false")
-                            set(expLine.at(0), "false");
+                            setValue(expLine.at(0), "false");
                     }
                     else if(opBlobIter->validParams.empty())
                     {
-                        set(expLine.at(0), expLine.at(1));
+                        setValue(expLine.at(0), expLine.at(1));
                     }
                     else if(expValOpts.size() > 1)
                     {
                         for(expValOptsIter = expValOpts.begin(); expValOptsIter != expValOpts.end(); ++expValOptsIter)
                         {
                             if((*expValOptsIter) == expLine.at(1))
-                                set(expLine.at(0), expLine.at(1));
+                                setValue(expLine.at(0), expLine.at(1));
                         }
                     }
                     else
@@ -207,13 +207,13 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
         if(!lastOpt.empty())
         {
             if(lastValParms.empty())
-                set(lastOpt, (*vsIter));
+                setValue(lastOpt, (*vsIter));
             else
             {
                 for(valParmsIter = lastValParms.begin(); valParmsIter != lastValParms.end(); ++valParmsIter)
                 {
                     if((*valParmsIter) == (*vsIter))
-                        set(lastOpt, (*vsIter));
+                        setValue(lastOpt, (*vsIter));
                 }
             }
             lastOpt.clear();
@@ -231,13 +231,13 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
                 valParms = pwan::strings::explode(opBlobIter->validParams, ":");
                 if(opBlobIter->validParams.empty() && parsedOpt.size() == 2)
                 {
-                    set(opBlobIter->longOpt, parsedOpt.at(1));
+                    setValue(opBlobIter->longOpt, parsedOpt.at(1));
                     added = 1;
                 }
                 else if(opBlobIter->validParams == "!")
                 {
                     added = 1;
-                    set(opBlobIter->longOpt, "true");
+                    setValue(opBlobIter->longOpt, "true");
                     break;
                 }
                 else if(!opBlobIter->validParams.empty() && parsedOpt.size() == 2)
@@ -247,7 +247,7 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
                         if(valParms.at(0) == parsedOpt.at(1))
                         {
                             added = 1;
-                            set(opBlobIter->longOpt, parsedOpt.at(1));
+                            setValue(opBlobIter->longOpt, parsedOpt.at(1));
                             break;
                         }
                     }
@@ -258,7 +258,7 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
                             if((*valParmsIter) == parsedOpt.at(1))
                             {
                                 added = 1;
-                                set(opBlobIter->longOpt, parsedOpt.at(1));
+                                setValue(opBlobIter->longOpt, parsedOpt.at(1));
                                 break;
                             }
                         }
@@ -277,10 +277,10 @@ std::vector<std::string> pwan::options::checkCmdLine(const std::vector<std::stri
         {
             if(!defaultOpt.empty() && !((*vsIter).at(0) == '-' || (*vsIter).at(0) == '/'))
             {
-                lastOpt = get(defaultOpt);
+                lastOpt = getValue(defaultOpt);
                 if(!lastOpt.empty())
                     lastOpt += " ";
-                set(defaultOpt, lastOpt + (*vsIter));
+                setValue(defaultOpt, lastOpt + (*vsIter));
                 lastOpt.clear();
             }
             else
