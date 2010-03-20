@@ -11,6 +11,7 @@
 #include "testutils.h"
 #include "testcmdlineparser.h"
 #include "testdebug.h"
+#include "testoptions.h"
 
 pwan::testTool pTest;
 
@@ -56,11 +57,17 @@ void testDebug(void)
     setDebugLevel();
 }
 
+void testOptions(void)
+{
+    testSetValue();
+}
+
 int main(void)
 {
     testStrings();
     testUtils();
     testCmdLineParser();
     testDebug();
+    testOptions();
     return 0;
 }

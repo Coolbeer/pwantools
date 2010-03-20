@@ -27,7 +27,10 @@ pwantools_SOURCES = \
 	testcmdlineparser.cpp \
 	testcmdlineparser.h \
 	testdebug.cpp \
-	testdebug.h
+	testdebug.h \
+	testoptions.cpp \
+	testoptions.h
+
 CLEANFILES = *moc *~
 
 AM_CXXFLAGS = $(BOOST_CPPFLAGS)

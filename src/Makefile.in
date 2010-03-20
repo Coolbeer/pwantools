@@ -52,7 +52,8 @@ am_pwantools_OBJECTS = main.$(OBJEXT) pwanutils.$(OBJEXT) \
 	pwandebug.$(OBJEXT) pwandir.$(OBJEXT) pwanfileinfo.$(OBJEXT) \
 	pwancmdlineparser.$(OBJEXT) testtool.$(OBJEXT) \
 	teststrings.$(OBJEXT) testutils.$(OBJEXT) \
-	testcmdlineparser.$(OBJEXT) testdebug.$(OBJEXT)
+	testcmdlineparser.$(OBJEXT) testdebug.$(OBJEXT) \
+	testoptions.$(OBJEXT)
 pwantools_OBJECTS = $(am_pwantools_OBJECTS)
 pwantools_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
@@ -195,7 +196,9 @@ pwantools_SOURCES = \
 	testcmdlineparser.cpp \
 	testcmdlineparser.h \
 	testdebug.cpp \
-	testdebug.h
+	testdebug.h \
+	testoptions.cpp \
+	testoptions.h
 
 CLEANFILES = *moc *~
 AM_CXXFLAGS = $(BOOST_CPPFLAGS)
@@ -277,6 +280,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pwanutils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testcmdlineparser.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testdebug.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testoptions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/teststrings.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testtool.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testutils.Po@am__quote@
