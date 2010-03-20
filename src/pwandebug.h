@@ -23,10 +23,10 @@ namespace pwan
     class debug
     {
         public:
-                                                    debug(void);
+                                                    debug(void) : className("debug"), maxSavedLog(20), iMute(false) { if(debugLevel == 0) debugLevel = 1;}
             void                                    dprint(const std::string &from, const std::string &message, const unsigned int &p_debugLevel = 1);
             void                                    dprint(const std::string &message, const unsigned int p_debugLevel = 1);
-            int                                     setDebugLevel(const unsigned int &debugLevel);
+            int                                     setDebugLevel(const unsigned int debugLevel);
             int                                     getDebugLevel(void);
             void                                    mute(void);
             void                                    unMute(void);

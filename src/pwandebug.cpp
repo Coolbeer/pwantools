@@ -7,14 +7,6 @@
 unsigned int pwan::debug::debugLevel;
 std::vector<pwan::t_savedMessage> pwan::debug::savedMessages;
 
-pwan::debug::debug(void)
-{
-    debugLevel = 1;
-    className = "debug";
-    maxSavedLog = 20;
-    iMute = false;
-}
-
 void pwan::debug::mute()
 {
     iMute = true;
@@ -53,17 +45,17 @@ void pwan::debug::dprint(const std::string &from, const std::string &message, co
 
 void pwan::debug::dprint(const std::string &message, const unsigned int p_debugLevel)
 {
-    dprint("", message, p_debugLevel);
+    dprint("", message + "\n", p_debugLevel);
 }
 
-int pwan::debug::setDebugLevel(const unsigned int &NewdebugLevel)
+int pwan::debug::setDebugLevel(const unsigned int NewdebugLevel)
 {
     std::string functionName("setDebugLevel");
     std::vector<t_savedMessage>::iterator iter;
     if(NewdebugLevel > 0 && NewdebugLevel < 20)
         debugLevel = NewdebugLevel;
-    dprint(className + "::" + functionName, "Setting debug level " + pwan::strings::fromInt(debugLevel), 3);
-    dprint(className + "::" + functionName, "Printing out saved messages(if any) from lower debuglevels", 3);
+    dprint(className + "::" + functionName, "Setting debug level " + pwan::strings::fromInt(debugLevel) + "\n", 3);
+    dprint(className + "::" + functionName, "Printing out saved messages(if any) from lower debuglevels\n", 3);
     iter = savedMessages.begin();
     while(iter != savedMessages.end())
     {
