@@ -1,6 +1,12 @@
 #include "pwancmdlineparser.h"
-#include "../config.h"
 #include "pwanstrings.h"
+
+#ifdef _WIN32
+#include "../config-w32.h"
+#endif
+#ifdef linux
+#include "../config.h"
+#endif
 
 std::map<std::string, std::string> pwan::t_cmdlineParser::internalData;
 

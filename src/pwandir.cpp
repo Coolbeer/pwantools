@@ -1,5 +1,5 @@
+/*
 #include <iostream>
-#include <dirent.h>
 #include <stdlib.h>
 
 #include "pwandir.h"
@@ -67,3 +67,5 @@ std::vector<pwan::fileInfo> pwan::dir::entryInfoList(const std::vector<std::stri
     }
     return returnvalue;
 }
+
+*/

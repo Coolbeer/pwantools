@@ -51,13 +51,14 @@ void pwan::debug::dprint(const std::string &message, const unsigned int p_debugL
 int pwan::debug::setDebugLevel(const unsigned int NewdebugLevel)
 {
     std::string functionName("setDebugLevel");
-    std::vector<t_savedMessage>::iterator iter;
+    static std::vector<t_savedMessage>::iterator iter;
     if(NewdebugLevel > 0 && NewdebugLevel < 20)
         debugLevel = NewdebugLevel;
+
     dprint(className + "::" + functionName, "Setting debug level " + pwan::strings::fromInt(debugLevel) + "\n", 3);
     dprint(className + "::" + functionName, "Printing out saved messages(if any) from lower debuglevels\n", 3);
     iter = savedMessages.begin();
-    while(iter != savedMessages.end())
+    while(savedMessages.size() != 0)
     {
         if((*iter).debugLevel <= debugLevel)
         {

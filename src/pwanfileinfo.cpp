@@ -71,10 +71,10 @@ std::string pwan::fileInfo::absolutePath(std::string path)
         char *tmpcwd = new char[4096];
         std::string cwd;
 #ifdef linux
-		if(getcwd(tmpcwd, 4096) == NULL)
+        if(getcwd(tmpcwd, 4096) == NULL)
 #endif
 #ifdef _WIN32
-		if(_getcwd(tmpcwd, 4096) == NULL)
+        if(_getcwd(tmpcwd, 4096) == NULL)
 #endif
         {
             std::cout << "absolutepath failed \n\n";
