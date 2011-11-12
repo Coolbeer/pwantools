@@ -13,14 +13,15 @@
 
 pwan::p_returnValue pwan::getextention(const std::string &filename, std::string &returnValue)
 {
-    boost::filesystem::path bfs;
-    bfs = boost::filesystem::system_complete(filename);
-    if(bfs.extension() == "")
-        return P_ERROR;
+    if(filename.find_last_of(".") != std::string::npos)
+    {
+        returnValue = filename.substr(filename.find_last_of(".") +1);
+	return P_OK;
+    }
     else
     {
-        returnValue = bfs.extension();
-        return P_OK;
+        returnValue = "";
+	return P_ERROR;
     }
 }
 
